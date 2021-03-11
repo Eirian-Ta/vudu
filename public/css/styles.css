@@ -1,13 +1,17 @@
 /********** GENERAL *********/
 html {
-  min-width: 260px;
+  min-width: 320px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   font-size: 1rem; }
 
 @media screen and (max-width: 962px) {
   html {
-    font-size: 62.5%; } }
+    font-size: 62.5%; }
+    html .socialmedia, html .internal-links, html .app-links {
+      justify-content: center !important; }
+    html #disclaimer {
+      text-align: center !important; } }
 
 body {
   font: 100% SystemFont, Helvetica, Arial, sans-serif;
@@ -40,8 +44,8 @@ a {
   text-decoration: none; }
 
 ul {
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0 0.5rem !important;
+  padding: 0;
   list-style-type: none; }
 
 #logo {
@@ -58,7 +62,8 @@ ul {
 
 .container {
   max-width: 1330px !important;
-  margin: 0 auto !important; }
+  margin: 0 auto !important;
+  padding: 0 !important; }
 
 h2 {
   font-size: 1.4rem !important;
@@ -70,43 +75,43 @@ h2 {
 
 /********** HEADER *********/
 /*** Main Nav ***/
-.main-nav {
-  background: linear-gradient(90deg, #017bc5 33%, #024e7c 69%, #041c2c 100%);
-  display: flex;
-  justify-content: space-between;
-  padding: 0 8rem; }
-  .main-nav ul {
-    display: flex; }
-    .main-nav ul li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem .5rem;
-      color: white; }
-      .main-nav ul li a {
+header {
+  background: linear-gradient(90deg, #017bc5 33%, #024e7c 69%, #041c2c 100%); }
+  header .main-nav {
+    display: flex;
+    justify-content: space-between; }
+    header .main-nav ul {
+      display: flex; }
+      header .main-nav ul li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem .5rem;
         color: white; }
-      .main-nav ul li:hover {
-        background: #017bc5; }
-        .main-nav ul li:hover a {
-          text-decoration: none;
-          opacity: .5; }
-  .main-nav .dropdown-content {
-    width: 12rem;
-    display: none !important;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    z-index: 1;
-    background: #041C2C; }
-    .main-nav .dropdown-content * {
-      padding: 0.5rem 0.8rem !important; }
-  .main-nav .dropdown {
-    position: relative; }
-    .main-nav .dropdown:hover .dropdown-content {
-      border: white .1px solid;
-      display: block !important; }
-      .main-nav .dropdown:hover .dropdown-content li a {
-        opacity: 1 !important; }
+        header .main-nav ul li a {
+          color: white; }
+        header .main-nav ul li:hover {
+          background: #017bc5; }
+          header .main-nav ul li:hover a {
+            text-decoration: none;
+            opacity: .5; }
+    header .main-nav .dropdown-content {
+      width: 12rem;
+      display: none !important;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 1;
+      background: #041C2C; }
+      header .main-nav .dropdown-content * {
+        padding: 0.5rem 0.8rem !important; }
+    header .main-nav .dropdown {
+      position: relative; }
+      header .main-nav .dropdown:hover .dropdown-content {
+        border: white .1px solid;
+        display: block !important; }
+        header .main-nav .dropdown:hover .dropdown-content li a {
+          opacity: 1 !important; }
 
 .slider {
   margin: 1rem 0; }
@@ -117,6 +122,9 @@ h2 {
 
 .promote {
   margin: 1rem 0; }
+
+.content img {
+  width: 100%; }
 
 /********** FOOTER *********/
 footer {
@@ -148,9 +156,15 @@ footer {
       footer .socialmedia li img {
         height: 25px; }
 
+/********** LISTRING PAGE *********/
+.list {
+  text-align: center;
+  margin: 4rem auto; }
+
 /********** LOGIN & SIGN UP PAGE *********/
 .box {
   width: 600px;
+  max-width: 90vw;
   margin: 0 auto 3rem;
   padding: 1.5rem;
   background: white; }
@@ -202,6 +216,7 @@ footer {
 
 #signup-pmt {
   width: 600px;
+  max-width: 90vw;
   margin: 3rem auto 0;
   display: block; }
 
@@ -257,13 +272,15 @@ footer {
   margin: 3rem auto; }
   .item-details .more-info div {
     display: flex;
-    justify-content: space-between; }
+    justify-content: flex-start; }
     .item-details .more-info div span {
       color: #041C2C;
       background: white;
       border-radius: 5px;
       padding: 0 .3rem;
       font-size: .8rem; }
+    .item-details .more-info div ul {
+      margin-right: 15vw !important; }
 
 .item-details .suggestions {
   margin: 2rem 0; }
