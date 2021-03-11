@@ -1,0 +1,74 @@
+<section class="item-details">
+    <div
+    class="general-details"
+     style ="background: linear-gradient(to right, rgba(4,28,44,1),rgba(4,28,44,1),rgba(0,0,0,.6),rgba(0,0,0,.1)), url('/images/posters/{{item.l_image}}.jpg') no-repeat ;"
+     >
+        <img src="/images/posters/{{item.s_image}}.jfif" alt="">
+        <div class="info1">
+            <h2>{{item.title}}</h2>
+            <p class="info2">
+                {{#each item.gerne}}
+                <span>{{this}} | </span>
+                {{/each}}
+                {{item.date}}
+             </p>
+            <div class="ranking">
+                <span class="stars" id="{{item.stars}}s" ></span>
+                <span>
+                    {{#if item.score}}
+                        <img class="rt-icon" src="/images/rotten-tomatoes-logo.png" alt="rotten tomatoes icon">{{item.score}}%
+                    {{/if}}
+                    </span>
+            </div> 
+            <p>{{item.synopsis}}</p>
+            <div class="price">
+                <p>Rent ${{item.rent}}</p>
+                <p>Buy ${{item.purchase}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="suggestions">   
+        <h3>You May Also Like</h3>
+        <ul class="lightSlider">
+            {{#each suggestions}}
+                <div class="container"> 
+                    <li><a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}.jfif" alt=""></a></li>
+                </div>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="more-info">
+        <h3>More Info</h3>
+        <div>
+            <ul>
+                <li>Length: {{item.length}}</li>
+                <li>Rating: {{item.rating}}</li>
+                <li>Studio: {{item.studio}}</li>
+                <li>Language: {{item.language}}</li>
+                {{#if item.score}}
+                    <li>Rotten Tomatoes Score: <img class="rt-icon" src="/images/rotten-tomatoes-logo.png" alt="rotten tomatoes icon">{{item.score}}%</li>
+                {{/if}}
+            </ul>
+            <ul>
+                {{#if item.UDH}}           
+                    <li><span>UHD</span> {{item.UHD}}</li>
+                {{/if}}
+                {{#if item.HDX}}
+                    <li><span>HDX</span> {{item.HDX}}</li>
+                {{/if}}
+                {{#if item.SD}}
+                    <li><span>SD</span> {{item.SD}}</li>
+                {{/if}}
+                {{#if item.CC}}
+                    <li><span>CC</span> {{item.CC}}</li>
+                {{/if}}
+            </ul>
+        </div>       
+    </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>       
+<script src="/js/lightslider.min.js"></script>
+<script src="/js/slider.js"></script>

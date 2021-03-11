@@ -1,0 +1,271 @@
+/********** GENERAL *********/
+html {
+  min-width: 260px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 1rem; }
+
+@media screen and (max-width: 962px) {
+  html {
+    font-size: 62.5%; } }
+
+body {
+  font: 100% SystemFont, Helvetica, Arial, sans-serif;
+  margin: 0;
+  background: #041C2C !important;
+  color: white; }
+
+.visuallyhidden {
+  display: none; }
+
+form {
+  max-width: 80vw;
+  margin: 0 auto; }
+
+input[type='reset'],
+input[type='submit'] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled],
+input[disabled] {
+  cursor: default; }
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0; }
+
+a {
+  text-decoration: none; }
+
+ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style-type: none; }
+
+#logo {
+  height: 1.2rem; }
+
+.rt-icon {
+  height: 1rem; }
+
+#disclaimer {
+  font-size: .8rem;
+  color: #687882 !important;
+  text-align: right;
+  margin: 2rem 0 !important; }
+
+.container {
+  max-width: 1330px !important;
+  margin: 0 auto !important; }
+
+h2 {
+  font-size: 1.4rem !important;
+  color: white; }
+
+.section-header {
+  display: flex;
+  justify-content: space-between; }
+
+/********** HEADER *********/
+/*** Main Nav ***/
+.main-nav {
+  background: linear-gradient(90deg, #017bc5 33%, #024e7c 69%, #041c2c 100%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8rem; }
+  .main-nav ul {
+    display: flex; }
+    .main-nav ul li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem .5rem;
+      color: white; }
+      .main-nav ul li a {
+        color: white; }
+      .main-nav ul li:hover {
+        background: #017bc5; }
+        .main-nav ul li:hover a {
+          text-decoration: none;
+          opacity: .5; }
+  .main-nav .dropdown-content {
+    width: 12rem;
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1;
+    background: #041C2C; }
+    .main-nav .dropdown-content * {
+      padding: 0.5rem 0.8rem !important; }
+  .main-nav .dropdown {
+    position: relative; }
+    .main-nav .dropdown:hover .dropdown-content {
+      border: white .1px solid;
+      display: block !important; }
+      .main-nav .dropdown:hover .dropdown-content li a {
+        opacity: 1 !important; }
+
+.slider {
+  margin: 1rem 0; }
+  .slider h2 {
+    color: white; }
+  .slider img {
+    width: 144px; }
+
+.promote {
+  margin: 1rem 0; }
+
+/********** FOOTER *********/
+footer {
+  border-top: #687882 solid 0.1px; }
+  footer .app-links {
+    display: flex; }
+    footer .app-links li {
+      padding: 2rem .5rem 2rem 0; }
+      footer .app-links li img {
+        height: 30px; }
+  footer .internal-links {
+    display: flex;
+    justify-content: flex-start; }
+    footer .internal-links ul {
+      width: 14rem; }
+      footer .internal-links ul li {
+        color: white; }
+        footer .internal-links ul li a {
+          font-size: .8rem;
+          color: #687882; }
+      footer .internal-links ul li:first-child {
+        font-size: 1.2rem; }
+  footer .socialmedia {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 2rem !important; }
+    footer .socialmedia li {
+      padding: .2rem; }
+      footer .socialmedia li img {
+        height: 25px; }
+
+/********** LOGIN & SIGN UP PAGE *********/
+.box {
+  width: 600px;
+  margin: 0 auto 3rem;
+  padding: 1.5rem;
+  background: white; }
+  .box div {
+    width: 80%;
+    margin: 1rem auto;
+    padding: 0 !important; }
+  .box div:first-of-type input, .box div:first-of-type .btn {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+    padding: 0.8rem 1rem 0.8rem 1rem;
+    margin: .8rem 0;
+    border: #687882 solid 1px; }
+  .box div:first-of-type a:first-of-type {
+    color: #017bc5;
+    text-align: left; }
+  .box .btn {
+    border: #687882 solid 1px;
+    width: 100%;
+    text-align: center !important; }
+  .box .btn1 {
+    background: #017bc5;
+    color: white; }
+  .box .btn2 {
+    background: white;
+    color: #017bc5; }
+  .box div {
+    padding: 2rem 0; }
+  .box .ex-links {
+    display: flex;
+    justify-content: space-between; }
+    .box .ex-links a img {
+      width: 95%;
+      border-radius: 5px; }
+    .box .ex-links a:first-of-type {
+      text-align: left !important; }
+    .box .ex-links a:nth-of-type(2) {
+      text-align: right !important; }
+  .box #checkbox {
+    font-size: .8rem; }
+    .box #checkbox input {
+      display: inline;
+      width: auto;
+      zoom: 0.8; }
+
+.login {
+  margin-top: 3rem; }
+
+#signup-pmt {
+  width: 600px;
+  margin: 3rem auto 0;
+  display: block; }
+
+.signup #fname, .signup #lname {
+  width: 48% !important;
+  float: left; }
+
+.signup input:nth-of-type(1) {
+  margin-right: 4% !important; }
+
+.signup a {
+  color: white !important; }
+
+.signup div:nth-of-type(2) {
+  margin: 0 auto !important; }
+
+/********** LISTING PAGES *********/
+.list img {
+  margin: .6rem; }
+
+/********** ITEM DETAILS *********/
+.item-details * {
+  color: white; }
+
+.item-details h2 {
+  font-size: 2rem !important; }
+
+.item-details .general-details {
+  padding: 2rem 0;
+  background-position: 100% 0 !important;
+  display: flex;
+  align-items: flex-start; }
+  .item-details .general-details .info1 {
+    width: 500px;
+    margin: 0 0 1.5rem 1.5rem; }
+    .item-details .general-details .info1 .info2 {
+      margin-bottom: 0; }
+    .item-details .general-details .info1 .ranking {
+      margin-bottom: 1rem; }
+      .item-details .general-details .info1 .ranking .stars {
+        margin-right: 3rem; }
+        .item-details .general-details .info1 .ranking .stars img {
+          width: 1rem; }
+    .item-details .general-details .info1 .price p {
+      float: left;
+      color: white;
+      background: #017bc5;
+      border-radius: 3px;
+      padding: .2rem 2rem;
+      margin: .5rem; }
+
+.item-details .more-info {
+  margin: 3rem auto; }
+  .item-details .more-info div {
+    display: flex;
+    justify-content: space-between; }
+    .item-details .more-info div span {
+      color: #041C2C;
+      background: white;
+      border-radius: 5px;
+      padding: 0 .3rem;
+      font-size: .8rem; }
+
+.item-details .suggestions {
+  margin: 2rem 0; }
+  .item-details .suggestions img {
+    width: 140px; }
