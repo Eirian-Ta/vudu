@@ -1,11 +1,19 @@
-<form class="box login"action="" method="">
+<form class="box login" action="/login" method="POST">
   <div>
     <label class="visuallyhidden" for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Username" name="uname" required>
+    <input type="text" placeholder="Username" name="uname">
+    {{#if errorU}}
+          <div class="errorMessages">{{errorU}}</div>
+      {{/if}}
+
     <label class="visuallyhidden" for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Password" name="psw" required>
+    <input type="password" placeholder="Password" name="psw">
+    {{#if errorP}}
+          <div class="errorMessages">{{errorP}}</div>
+      {{/if}}
+
     <a href="">Forgot your Vudu Password</a>
-    <a class="btn btn1" href="">Sign In</a>
+    <input type="submit" value="Sign In" class="btn btn1">
     <a class="btn btn2" href="/signup">Create a new Vudu account</a>
   </div>
   <div class="ex-links">

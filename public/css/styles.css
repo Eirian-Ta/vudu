@@ -168,6 +168,10 @@ footer {
   margin: 0 auto 3rem;
   padding: 1.5rem;
   background: white; }
+  .box .errorMessages {
+    color: red;
+    font-weight: bold;
+    margin: 0; }
   .box div {
     width: 80%;
     margin: 1rem auto;

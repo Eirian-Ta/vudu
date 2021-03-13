@@ -1,22 +1,26 @@
 const express = require("express");
 const exphbs  = require('express-handlebars');
-//const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 
 //imported module 
 const fakeDB  = require("./model/FakeDB.js");
 
 const app = express();
 
-//Tells Express where my static routes are 
-app.use(express.static("public"));
-
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-// create application/x-www-form-urlencoded parser
-//var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-//routes
+//Tells Express where my static routes are 
+app.use(express.static("public"));
+
+//tell express to make form data available via req.body in every request
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+//*routes
+
+//**homepage
 app.get("/",(req,res)=>{
     res.render("home",{
         title : "Home Page",
@@ -27,18 +31,52 @@ app.get("/",(req,res)=>{
     });
 })
 
+//**login
 app.get("/login",(req,res)=>{
     res.render("login",{
         title: "Log In Page"
     });
 })
 
+app.post("/login",(req,res)=> {
+    const errors=[];
+    console.log(req.body);
+
+    if (req.body.uname =="") {
+        errors.push("Please enter your username");
+    }
+    else {
+        errors.push(false);
+    }
+
+    if (req.body.psw =="")
+    {
+        errors.push("Please enter your password")
+    }
+    else {
+        errors.push(false);
+    }
+
+    if (errors[0] || errors[1])
+    {
+        console.log(errors);
+        res.render("login", {
+            title: "Log In Page",
+            errorU: errors[0],
+            errorP: errors[1]
+        })
+    }
+
+})
+
+//**signup
 app.get("/signup",(req,res)=>{
     res.render("signup",{
         title: "Sign Up Page"
     });
 })
 
+//**list all items
 app.get("/allListing",(req,res)=>{
     res.render("allListing",{
         title: "All Item Listing Page",
@@ -46,6 +84,7 @@ app.get("/allListing",(req,res)=>{
     });
 })
 
+//**list all movies
 app.get("/movielisting",(req,res)=>{
     res.render("movieListing",{
         title: "Movie Listing Page",
@@ -53,6 +92,7 @@ app.get("/movielisting",(req,res)=>{
     });
 })
 
+//**list all tv shows
 app.get("/tvshowlisting",(req,res)=>{
     res.render("tvshowListing",{
         title: "TV Show Listing Page",
@@ -60,6 +100,7 @@ app.get("/tvshowlisting",(req,res)=>{
     });
 })
 
+//**get an item
 app.get("/items/:id",(req,res)=>{
     console.log(fakeDB.getAnItem(req.params.id));
     res.render("itemDetails",{
@@ -67,6 +108,7 @@ app.get("/items/:id",(req,res)=>{
         suggestions: fakeDB.getSimilarGerneItems(req.params.id)
     })
 })
+
 
 
 const PORT = 5000;

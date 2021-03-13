@@ -3,16 +3,19 @@
   <div>
     <h2>Create a New Account</h2>
     <label class="visuallyhidden" for="fname"><b>First name</b></label>
-    <input type="text" placeholder="First name" name="fname"  id='fname' required>
+    <input type="text" placeholder="First name" name="fname"  id='fname'>
     <label class="visuallyhidden" for="lname"><b>Username</b></label>
-    <input type="text" placeholder="Last name" name="lname"  id='fname' required>
+    <input type="text" placeholder="Last name" name="lname"  id='lname'>
+    <div class="errorMessages">{{errorUname}}</div>
     <label class="visuallyhidden" for="email"><b>Email</b></label>
-    <input type="text" placeholder="Email" name="email" required>
+    <input type="text" placeholder="Email" name="email">
     <label class="visuallyhidden" for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Password" name="psw" required>
+    <input type="password" placeholder="Password" name="psw">
+        <div class="errorMessages">{{errorPsw}}</div>
     <label id="checkbox">
-      <input type="checkbox"> I certify that I am at least 18 years old and that I agree to the Terms and Policies and Privacy Policy. This service is for the U.S. only.
+      <input type="checkbox" name="checkBox"> I certify that I am at least 18 years old and that I agree to the Terms and Policies and Privacy Policy. This service is for the U.S. only.
     </label>
+    <div class="errorMessages">{{errorCheckbox}}</div>
     <a class="btn btn1" href="">Sign Up</a>
   </div>
   <div>
