@@ -99,15 +99,20 @@ app.post("/signup",(req,res)=> {
     console.log(validateEmail(req.body.email));
     let errors={errName: []};
 
-    errors.errName.push(req.body.fname =="" ? "Please enter your first name." : false);
-    errors.errName.push(req.body.lname =="" ? "Please enter your last name." : false);
+    if (req.body.fname =="") {
+        if (req.body.lname =="") {
+            errors.errName.push("Please enter your first name and last name.")
+        }
+        else {
+            errors.errName.push("Please enter your first name.");
+        }
+    }
+    else if (req.body.lname =="") {
+        errors.errName.push("Please enter your last name.");
+    }
 
-    errors.errEmail = req.body.email =="" ? "Please enter your email" : false;
-    errors.errEmail = !validateEmail(req.body.email) ? "The email you have entered is not valid. Please enter a valid email." : false;
-    
-    errors.errPsw = req.body.psw =="" ? "Please enter your password." : false;
-    errors.errPsw = !validatePsw(req.body.psw) ? "Your password should contain at least 8 characters, 1 number, 1 lowercase character, 1 uppercase character. No special characters are allowed." : false;
-
+    errors.errEmail = req.body.email =="" ? "Please enter your email" : !validateEmail(req.body.email) ? "The email you have entered is not valid. Please enter a valid email." : false;
+    errors.errPsw = req.body.psw =="" ? "Please enter your password." : !validatePsw(req.body.psw) ? "Your password should contain at least 8 characters, 1 number, 1 lowercase character, and 1 uppercase character. No special characters are allowed." : false;
     errors.errCb = !req.body.checkBox ? "You must agree to the Terms and Policies and Privacy Policy." : false;
 
     if (!errors.errName[0] && !errors.errName[1] && !errors.errEmail && !errors.errPsw && !errors.errCb) {
