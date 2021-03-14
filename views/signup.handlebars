@@ -1,22 +1,32 @@
 <img id="signup-pmt" src="images/signup_promotion.png" alt="">
-<form class="box signup" action="" method="">
+<form class="box signup" action="/signup" method="POST">
   <div>
     <h2>Create a New Account</h2>
     <label class="visuallyhidden" for="fname"><b>First name</b></label>
     <input type="text" placeholder="First name" name="fname"  id='fname'>
-    <label class="visuallyhidden" for="lname"><b>Username</b></label>
+    {{#if errorF}}
+        <div class="errorMessages">{{errorF}}</div>
+    {{/if}}
+    <label class="visuallyhidden" for="lname"><b>Last name</b></label>
     <input type="text" placeholder="Last name" name="lname"  id='lname'>
-    <div class="errorMessages">{{errorUname}}</div>
+    {{#if errorL}}
+          <div class="errorMessages">{{errorL}}</div>
+      {{/if}}
     <label class="visuallyhidden" for="email"><b>Email</b></label>
     <input type="text" placeholder="Email" name="email">
+    {{#if errorE}}
+          <div class="errorMessages">{{errorE}}</div>
+      {{/if}}
     <label class="visuallyhidden" for="psw"><b>Password</b></label>
     <input type="password" placeholder="Password" name="psw">
-        <div class="errorMessages">{{errorPsw}}</div>
+    {{#if errorP}}
+          <div class="errorMessages">{{errorP}}</div>
+    {{/if}}
     <label id="checkbox">
       <input type="checkbox" name="checkBox"> I certify that I am at least 18 years old and that I agree to the Terms and Policies and Privacy Policy. This service is for the U.S. only.
     </label>
     <div class="errorMessages">{{errorCheckbox}}</div>
-    <a class="btn btn1" href="">Sign Up</a>
+    <input type="submit" value="Sign Up" class="btn btn1">
   </div>
   <div>
     <p>Or Sign Up with</p>

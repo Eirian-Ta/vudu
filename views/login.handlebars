@@ -1,13 +1,13 @@
 <form class="box login" action="/login" method="POST">
   <div>
     <label class="visuallyhidden" for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Username" name="uname">
+    <input type="text" placeholder="Username" name="uname" value={{usn}}>
     {{#if errorU}}
           <div class="errorMessages">{{errorU}}</div>
-      {{/if}}
+    {{/if}}
 
     <label class="visuallyhidden" for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Password" name="psw">
+    <input type="password" placeholder="Password" name="psw" value={{psw}}>
     {{#if errorP}}
           <div class="errorMessages">{{errorP}}</div>
       {{/if}}

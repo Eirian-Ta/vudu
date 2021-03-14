@@ -39,34 +39,25 @@ app.get("/login",(req,res)=>{
 })
 
 app.post("/login",(req,res)=> {
-    const errors=[];
-    console.log(req.body);
+    let errors={};
 
-    if (req.body.uname =="") {
-        errors.push("Please enter your username");
+    errors.errUsn = req.body.uname =="" ? "Please enter your username" : false;
+    errors.errPsw = req.body.psw =="" ? "Please enter your password" : false;
+
+    if (!errors.errUsn && !errors.errPsw) {
+        console.log("Loggin inputs are valid!");
     }
     else {
-        errors.push(false);
-    }
-
-    if (req.body.psw =="")
-    {
-        errors.push("Please enter your password")
-    }
-    else {
-        errors.push(false);
-    }
-
-    if (errors[0] || errors[1])
-    {
         console.log(errors);
-        res.render("login", {
-            title: "Log In Page",
-            errorU: errors[0],
-            errorP: errors[1]
-        })
     }
 
+    res.render("login", {
+        title: "Log In Page",
+        usn: req.body.uname,
+        psw: req.body.psw,
+        errorU: errors.errUsn,
+        errorP: errors.errPsw
+    })
 })
 
 //**signup
@@ -75,6 +66,39 @@ app.get("/signup",(req,res)=>{
         title: "Sign Up Page"
     });
 })
+
+// app.post("/signup",(req,res)=> {
+//     let errors=[]
+//     //console.log(req.body);
+
+//     errors[0] = req.body.fname =="" ? "Please enter your first name" : false;
+//     errors[1] = req.body.lname =="" ? "Please enter your last name" : false;
+//     errors[2] = req.body.lname =="" ? "Please enter your last name" : false;
+
+
+//     if (req.body.lname =="") {
+//         errors[0] = "Please enter your last name";
+//     }
+
+//     if (req.body.psw =="")
+//     {
+//         errors[1] = "Please enter your password";
+//     }
+
+//     if (errors[0] || errors[1])
+//     {
+//         console.log(errors);
+//         res.render("login", {
+//             title: "Log In Page",
+//             errorU: errors[0],
+//             errorP: errors[1]
+//         })
+//     }
+//     else {
+//         console.log("Loggin inputs are valid!");
+//     }
+
+// })
 
 //**list all items
 app.get("/allListing",(req,res)=>{
