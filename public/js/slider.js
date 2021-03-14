@@ -44,7 +44,7 @@ $(document).ready(function() {
                   }
             },
             {
-                breakpoint:450,
+                breakpoint:350,
                 settings: {
                     item:2,
                   }

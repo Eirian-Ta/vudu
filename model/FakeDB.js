@@ -83,7 +83,7 @@ const fakeDB = {
 		    stars: 5,
             rent: 3.99,
             purchase: 14.99,
-            featured: false,
+            featured: true,
             gerne: ['Adventure', 'Animation'],
 	        date: 2013,
             length: 99,

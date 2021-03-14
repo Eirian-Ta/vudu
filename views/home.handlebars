@@ -28,16 +28,16 @@
     </div>
    
     <div class="slider featured">
-    <h2>Featured Movies</h2>
+        <h2>Featured Movies</h2>
         <ul class="lightSlider">
             {{#each fmovies}}
-            <div class="container"> 
-                <li><a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}.jfif" alt=""></a></li>
-            </div>
-
-        {{/each}}
+                <div class="container"> 
+                    <li><a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}.jfif" alt=""></a></li>
+                </div>
+            {{/each}}
         </ul>
     </div>
+
     <div class="slider featured">
         <h2>Featured TV Shows</h2>
         <ul class="lightSlider">
@@ -45,11 +45,10 @@
             <div class="container"> 
                 <li><a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}.jfif" alt=""></a></li>
             </div>
-
         {{/each}}
         </ul>
     </div>
-    </div>
+
     <div class="content">
         <img class="promote" src="/images/promote1.jfif" alt="">
         <div class="slider all-items">
