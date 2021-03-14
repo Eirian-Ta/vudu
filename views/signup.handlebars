@@ -3,29 +3,31 @@
   <div>
     <h2>Create a New Account</h2>
     <label class="visuallyhidden" for="fname"><b>First name</b></label>
-    <input type="text" placeholder="First name" name="fname"  id='fname'>
-    {{#if errorF}}
-        <div class="errorMessages">{{errorF}}</div>
-    {{/if}}
+    <input type="text" placeholder="First name" name="fname"  id='fname' value={{fn}}>
     <label class="visuallyhidden" for="lname"><b>Last name</b></label>
-    <input type="text" placeholder="Last name" name="lname"  id='lname'>
-    {{#if errorL}}
-          <div class="errorMessages">{{errorL}}</div>
+    <input type="text" placeholder="Last name" name="lname"  id='lname' value={{ln}}>
+    {{#each errorN}}
+      {{#if this}}
+          <p class="errorMessages">{{this}}</p>
       {{/if}}
+    {{/each}}
+
     <label class="visuallyhidden" for="email"><b>Email</b></label>
-    <input type="text" placeholder="Email" name="email">
+    <input type="text" placeholder="Email" name="email" value={{em}}>
     {{#if errorE}}
-          <div class="errorMessages">{{errorE}}</div>
-      {{/if}}
+        <p class="errorMessages">{{errorE}}</p>
+    {{/if}}
     <label class="visuallyhidden" for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Password" name="psw">
+    <input type="password" placeholder="Password" name="psw" value={{psw}}>
     {{#if errorP}}
-          <div class="errorMessages">{{errorP}}</div>
+        <p class="errorMessages">{{errorP}}</p>
     {{/if}}
     <label id="checkbox">
-      <input type="checkbox" name="checkBox"> I certify that I am at least 18 years old and that I agree to the Terms and Policies and Privacy Policy. This service is for the U.S. only.
+      <input type="checkbox" name="checkBox" {{cb}}> I certify that I am at least 18 years old and that I agree to the Terms and Policies and Privacy Policy. This service is for the U.S. only.
     </label>
-    <div class="errorMessages">{{errorCheckbox}}</div>
+    {{#if errorCb}}
+        <p class="errorMessages">{{errorCb}}</p>
+    {{/if}}    
     <input type="submit" value="Sign Up" class="btn btn1">
   </div>
   <div>

@@ -3,13 +3,13 @@
     <label class="visuallyhidden" for="uname"><b>Username</b></label>
     <input type="text" placeholder="Username" name="uname" value={{usn}}>
     {{#if errorU}}
-          <div class="errorMessages">{{errorU}}</div>
+          <p class="errorMessages">{{errorU}}</p>
     {{/if}}
 
     <label class="visuallyhidden" for="psw"><b>Password</b></label>
     <input type="password" placeholder="Password" name="psw" value={{psw}}>
     {{#if errorP}}
-          <div class="errorMessages">{{errorP}}</div>
+          <p class="errorMessages">{{errorP}}</p>
       {{/if}}
 
     <a href="">Forgot your Vudu Password</a>

@@ -12,11 +12,14 @@
   "author": "Eirian Ta",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.2",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
-    "express-handlebars": "^5.2.1"
+    "express-handlebars": "^5.2.1",
+    "express-session": "^1.17.1"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
     "node-sass": "^5.0.0",
