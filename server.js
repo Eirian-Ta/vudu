@@ -1,195 +1,90 @@
 const express = require("express");
 const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');
-const sgMail = require('@sendgrid/mail');
-require('dotenv').config({path: 'config/keys.env'});
+const mongoose = require("mongoose");
+const fileUpload = require("express-fileupload");
 var session = require('express-session');
 
-//imported module 
-const fakeDB  = require("./model/FakeDB.js");
+//This loads all our environment variables from the keys.env
+require("dotenv").config({path:'./config/keys.env'});
+
+//import your router objects
+const userRoutes = require("./controllers/User");
+const generalRoutes = require("./controllers/General");
 
 const app = express();
-
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
-
-
-//Tells Express where my static routes are 
-app.use(express.static("public"));
 
 //tell express to make form data available via req.body in every request
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//Tells Express where my static routes are 
+app.use(express.static("public"));
 
-app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
-
-//validate email input for signup form
-function validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
-
-//validate email password for signup form
-// pw password should contain at least 8 characters, 
-// 1 Number, 1 lowercase character, 1 uppercase character. 
-// No special characters are allowed.
-function validatePsw(psw) {
-    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-    return re.test(psw);
-}
-
-//*routes
-
-//**dashboard
-app.get("/dashboard",(req,res)=>{
-    res.render("dashboard",{
-        title: "Dashboard",
-        name: req.session.userName
-    });
-})
-
-//**homepage
-app.get("/",(req,res)=>{
-    res.render("home",{
-        title : "Home Page",
-        fmovies : fakeDB.getAllMoviesFeatured(),
-        fshows: fakeDB.getAllShowsFeatured(),
-        items : fakeDB.getAllItems(),
-        cats: ['C1','C2','C3','C4','C5','C6','C7','C8','C9','C10']
-    });
-})
-
-//**login
-app.get("/login",(req,res)=>{
-    res.render("login",{
-        title: "Log In Page"
-    });
-})
-
-app.post("/login",(req,res)=> {
-    let errors={};
-
-    errors.errUsn = req.body.uname =="" ? "Please enter your username." : false;
-    errors.errPsw = req.body.psw =="" ? "Please enter your password." : false;
-
-    if (!errors.errUsn && !errors.errPsw) {
-        console.log("Loggin inputs are valid!");
-    }
-    else {
-        console.log(errors);
-    }
-
-    res.render("login", {
-        title: "Log In Page",
-        usn: req.body.uname,
-        psw: req.body.psw,
-        errorU: errors.errUsn,
-        errorP: errors.errPsw
-    })
-})
-
-//**signup
-app.get("/signup",(req,res)=>{
-    res.render("signup",{
-        title: "Sign Up Page"
-    });
-})
-
-app.post("/signup",(req,res)=> {
-    console.log(validateEmail(req.body.email));
-    let errors={errName: []};
-
-    if (req.body.fname =="") {
-        if (req.body.lname =="") {
-            errors.errName.push("Please enter your first name and last name.")
+//Handlebars middlware
+app.engine("handlebars",exphbs({
+    helpers:{
+        defaultLayout: 'main',
+        if_eq: function(a, b, opts) {
+            if (a == b) {
+                return opts.fn(this);
+            } else {
+                return opts.inverse(this);
+            }
+        },
+        formatTime: function(time) {
+            return moment(time).format("YYYY-MM-DD")
         }
-        else {
-            errors.errName.push("Please enter your first name.");
-        }
+    },
+}));
+app.set("view engine","handlebars");
+
+//Alow specific forms submitted to send PUT and DELETE request
+app.use((req,res,next)=>{
+    if(req.query.method=="PUT")
+    {
+        req.method="PUT"
     }
-    else if (req.body.lname =="") {
-        errors.errName.push("Please enter your last name.");
+    else if (req.query.method=="DELETE")
+    {
+        req.method="DELETE"
     }
-
-    errors.errEmail = req.body.email =="" ? "Please enter your email" : !validateEmail(req.body.email) ? "The email you have entered is not valid. Please enter a valid email." : false;
-    errors.errPsw = req.body.psw =="" ? "Please enter your password." : !validatePsw(req.body.psw) ? "Your password should contain at least 8 characters, 1 number, 1 lowercase character, and 1 uppercase character. No special characters are allowed." : false;
-    errors.errCb = !req.body.checkBox ? "You must agree to the Terms and Policies and Privacy Policy." : false;
-
-    if (!errors.errName[0] && !errors.errName[1] && !errors.errEmail && !errors.errPsw && !errors.errCb) {
-        //SENDGRID
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-        const msg = {
-        to: req.body.email,
-        from: 'tta6@myseneca.ca', // Change to your verified sender
-        subject: 'WELCOME TO VUDU@SENECA',
-        text: `Hi ${req.body.fname}, welcome to Vudu@Seneca`,
-        html: `<h1>Hi ${req.body.fname}, welcome to Vudu@Seneca</h1>`,
-        }
-        sgMail
-        .send(msg)
-        .then(() => {
-            console.log('Email sent')
-        })
-        .catch((error) => {
-            console.error(error)
-        })
-
-        req.session.userName = req.body.fname;
-        res.redirect("/dashboard")
-    }
-    else {
-        console.log(errors);
-        res.render("signup", {
-            title: "Sign Up Page",
-            fn: req.body.fname,
-            ln: req.body.lname,
-            em: req.body.email,
-            psw: req.body.psw,
-            cb: req.body.checkBox? "checked" :"",
-            errorN: errors.errName,
-            errorE: errors.errEmail,
-            errorP: errors.errPsw,
-            errorCb: errors.errCb,        
-        })
-    }
+    next();
 })
 
-//**list all items
-app.get("/allListing",(req,res)=>{
-    res.render("allListing",{
-        title: "All Item Listing Page",
-        items : fakeDB.getAllItems()
-    });
-})
+app.use(fileUpload());
 
-//**list all movies
-app.get("/movielisting",(req,res)=>{
-    res.render("movieListing",{
-        title: "Movie Listing Page",
-        movies : fakeDB.getAllMovies()
-    });
-})
+app.use(session({
+    secret: `${process.env.SECRET_KEY}`,
+    resave: false,
+    saveUninitialized: true,
+    //cookie: { secure: true } //only work for https
+  }))
 
-//**list all tv shows
-app.get("/tvshowlisting",(req,res)=>{
-    res.render("tvshowListing",{
-        title: "TV Show Listing Page",
-        shows : fakeDB.getAllShows()
-    });
-})
+app.use((req,res,next)=>{
+    
+    res.locals.user=req.session.userInfo;
 
-//**get an item
-app.get("/items/:id",(req,res)=>{
-    console.log(fakeDB.getAnItem(req.params.id));
-    res.render("itemDetails",{
-        item : fakeDB.getAnItem(req.params.id),
-        suggestions: fakeDB.getSimilarGerneItems(req.params.id)
-    })
+    next();
 })
 
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, ()=>{
+//MAPs EXPRESS TO ALL OUR  ROUTER OBJECTS
+app.use("/",generalRoutes);
+app.use("/user",userRoutes);
+app.use("/",(req,res)=>{
+    res.render("General/404");
+    
+});
 
-    console.log(`Web Server is up and running on PORT ${PORT}`)
+mongoose.connect (process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=>{
+    console.log(`Connected to MongoDB Database`);
 })
+.catch(err=>console.log(`Error occured when connecting to database ${err}`));
+
+const PORT = process.env.PORT;
+//Creates an Express Web Server that listens for incomin HTTP Requests
+app.listen(PORT,()=>{
+    console.log(`Your Web Server has been connected`);
+    
+});

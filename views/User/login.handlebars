@@ -1,9 +1,9 @@
-<form class="box login" action="/login" method="POST">
+<form class="box login" action="/User/login" method="POST">
   <div>
-    <label class="visuallyhidden" for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Username" name="uname" value={{usn}}>
-    {{#if errorU}}
-          <p class="errorMessages">{{errorU}}</p>
+    <label class="visuallyhidden" for="uname"><b>Email</b></label>
+    <input type="text" placeholder="Email" name="email" value={{email}}>
+    {{#if errorE}}
+          <p class="errorMessages">{{errorE}}</p>
     {{/if}}
 
     <label class="visuallyhidden" for="psw"><b>Password</b></label>
@@ -14,7 +14,7 @@
 
     <a href="">Forgot your Vudu Password</a>
     <input type="submit" value="Sign In" class="btn btn1">
-    <a class="btn btn2" href="/signup">Create a new Vudu account</a>
+    <a class="btn btn2" href="/User/register">Create a new Vudu account</a>
   </div>
   <div class="ex-links">
     <a href=""><img src="/images/Wm_btn.jpg" alt="walmart logo"></a>

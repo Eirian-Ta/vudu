@@ -1,0 +1,25 @@
+ <header>
+    <nav class="main-nav container">
+        <ul>
+            <li><a href="/"><img id="logo" src="/images/vudu-logo.png" alt="vudu logo"></a></li>
+            <li><a href="/movielisting">Movies</a></li>
+            <li><a href="/tvshowlisting">TV</a></li>
+            <li><a href="">Free</a></li>
+            <li><a href="">MyVudu</a></li>
+        </ul>
+        <ul>
+            <li>Redeem</li>
+            {{#if user}}
+                <li><a href="/user/logout">Log out </a></li>
+            {{else}}
+            <li class="dropdown">Sign In
+                <ul class="dropdown-content ">
+                    <li><a href="/User/login">Sign In</a></li>
+                    <li><a href="/User/register">Create an acount</a></li>
+                </ul> 
+            </li>
+            {{/if}}
+
+        </ul>
+    </nav>
+</header>
