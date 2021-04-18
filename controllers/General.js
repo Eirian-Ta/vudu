@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require("path");
 const itemModel = require("../models/Item.js");
 const itemProcess = require("../middleware/itemProcess.js")
-const generalService = require("../services/generalService.js")
+const generalService = require("../services/GeneralService.js")
 const isAuthenticated = require("../middleware/auth")
 const sgMail = require('@sendgrid/mail');
 
