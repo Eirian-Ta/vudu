@@ -403,7 +403,7 @@ router.get("/checkout",isAuthenticated,(req,res,next)=> {
         <tbody>
             ${req.session.cart.items.map(item=> 
                     `<tr>
-                        <th scope="col"><img width="80" src="/images/posters/${item.s_image}" alt=""></a></th>
+                        <th scope="col"><img width="80" src="https://vudu-eirianversion.herokuapp.com/images/posters/${item.s_image}" alt=""></a></th>
                         <th scope="col">${item.type}</th>
                     <th scope="col">${item.price}</th>                 
                     </tr>`           
