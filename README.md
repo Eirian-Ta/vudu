@@ -23,6 +23,6 @@ After having logged in, the user will be directed to their user dashboard. For a
 
 ●	Only logged in customers can add movies & TV shows to their cart and view it. When the user clicks the “Confirm Order” button, the application will clear the  cart and send email with the entire order information to the user.
 
-●	For an admin, he/she can go to the Items Dashboard after logging in, to create, edit or delete a movie or Tv show. All changes will immediately reflects on the whole website. For the scope of this project, the admin account is manually created in the database.
+●	For an admin, he/she can go to the Items Dashboard after logging in, to create, edit or delete a movie or Tv show. Only jpgs, gifs, and pngs are allowed to be uploaded for the TV shows' and movies' posters. All changes will immediately reflects on the whole website. For the scope of this project, the admin account is manually created in the database.
 
 
