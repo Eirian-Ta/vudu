@@ -9,11 +9,90 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-        {{> header}}
-        <main class="container">
-           {{{body}}}
-        </main>
-         {{> footer}}
+    <header>
+        <nav class="main-nav container">
+            <ul>
+                <li><a href="/"><img id="logo" src="/images/vudu-logo.png" alt="vudu logo"></a></li>
+                <li><a href="/movielisting">Movies</a></li>
+                <li><a href="/tvshowlisting">TV</a></li>
+                <li><a href="">Free</a></li>
+                {{#if_eq user.type "user"}}
+                    <li><a href="user/user-dashboard">MyVudu</a></li>
+                {{/if_eq}}
+                {{#if_eq user.type "admin"}}
+                    <li><a href="user/admin-dashboard">MyVudu</a></li>
+                {{/if_eq}}
+            </ul>
+            <ul>
+                {{#if user}}
+                    <li><a href="/user/logout">Log out </a></li>
+                {{else}}
+                <li class="dropdown">Sign In
+                    <ul class="dropdown-content ">
+                        <li><a href="/User/login">Sign In</a></li>
+                        <li><a href="/User/register">Create an acount</a></li>
+                    </ul> 
+                </li>
+                {{/if}}
+                <li><a href="/search"><img class="icon"  src="/images/search_icon.png" alt=""></a></li>
+                {{#if user}}
+                    <li><a href="/cart"><img class="icon" src="/images/cart-icon.svg" alt=""><span class="badge">{{session.cart.totalQty}}</span></a></li>
+                {{/if}}
+
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        {{{body}}}
+    </main>
+    <footer>
+        <ul class="app-links container">
+            <li><img src="/images/itunes.png" alt=""></li>
+            <li><img src="/images/google.png" alt=""></li>
+            <li><img src="/images/windows.png" alt=""></li>
+        </ul>
+        <div class="internal-links container">
+            <ul>
+                <li>Watch</li>
+                <li><a href="">Spotlight</a></li>
+                <li><a href="/movielisting">Movies</a></li>
+                <li><a href="/tvshowlisting">TV</a></li>
+                <li><a href="">Free</a></li>
+            </ul>
+            <ul>
+                <li>My Acount</li>
+                <li><a href="">My Vudu</a></li>
+                <li><a href="">Account</a></li>
+                <li><a href="">Settings</a></li>
+                <li><a href="">Manage Devices</a></li>
+            </ul>
+            <ul>
+                <li>Features</li>
+                <li><a href="">Lists</a></li>
+                <li><a href="">Family</a></li>
+                <li><a href="">Disc to Digital</a></li>
+                <li><a href="">InstaWatch</a></li>
+                <li><a href="">Movies Anywhere</a></li>
+            </ul>
+            <ul>
+                <li>Help</li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Devices</a></li>
+                <li><a href="">Support</a></li>
+                <li><a href="">Forums</a></li>
+                <li><a href="">Contact Us</a></li>
+                <li><a href="">Jobs</a></li>
+            </ul>
+        </div>
+        <ul class="socialmedia container">
+            <li><a href="https://www.linkedin.com/company/vudu/" target="_blank"><img src="/images/media-in.svg" alt=""></a></li>
+            <li><a href="https://www.facebook.com/vudufans?ref=ts" target="_blank"><img src="/images/media-fb.svg" alt=""></a></li>
+            <li><a href="https://twitter.com/vudufans" target="_blank"><img src="/images/media-tw.svg" alt=""></a></li>
+            <li><a href="https://www.youtube.com/user/vudufans" target="_blank"><img src="/images/media-youtube.svg" alt=""></a></li>
+            <li><a href="https://blog.vudu.com/" target="_blank"><img src="/images/blog.svg" alt=""></a></li>
+        </ul>
+        <p class="container" id="disclaimer">**This website is created for the purpose of school project only. All designs, images and info belong to the original VUDU website</p>
+    </footer>
          <!-- Loads a browser JS files -->
         <script src="/js/app.js"></script>
 </body>
