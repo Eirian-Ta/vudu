@@ -22,8 +22,8 @@
             </div> 
             <p>{{item.synopsis}}</p>
             <div class="price">
-                <p>Rent ${{item.rent}}</p>
-                <p>Buy ${{item.purchase}}</p>
+                <a class="btn" href="/addToCart/rent/{{item.id}}">Rent ${{item.rent}}</a>
+                <a class="btn" href="/addToCart/buy/{{item.id}}">Buy ${{item.purchase}}</a>
             </div>
         </div>
     </div>
@@ -72,3 +72,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>       
 <script src="/js/lightslider.min.js"></script>
 <script src="/js/slider.js"></script>
+<script src="/js/cart.js"></script>

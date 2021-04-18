@@ -30,7 +30,7 @@ const fakeDB = {
         {
             id: 02,
             title: 'Tenet',
-            synopsis: "Armed with only one word--Tenet-- and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time",
+            synopsis: "Armed with only one word--Tenet-- and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
             s_image: 'Tenet_S',
             l_image: 'Tenet_L',
 		    stars: 4,
@@ -53,7 +53,7 @@ const fakeDB = {
         {
             id: 03,
             title: 'The Croods: A New Age',
-            synopsis: 'In search of a new home, the Croods encounter the more sophisticated Betterman family. A new threat forces the two families to set aside their differences to avoid extinction',
+            synopsis: 'In search of a new home, the Croods encounter the more sophisticated Betterman family. A new threat forces the two families to set aside their differences to avoid extinction.',
             s_image: 'The_Croods_A_New_Age_S',
             l_image: 'The_Croods_A_New_Age_L',
 		    stars: 5,
@@ -77,7 +77,7 @@ const fakeDB = {
         {
             id: 04,
             title: 'The Croods',
-            synopsis: 'Join the Croods on the journey of a lifetime in this epic comedy-adventure. When their cave is destroyed, the Croods set out to explore a spectacular landscape filled with fantastic creatures, strange surprises, and a whole new world of adventure',
+            synopsis: 'Join the Croods on the journey of a lifetime in this epic comedy-adventure. When their cave is destroyed, the Croods set out to explore a spectacular landscape filled with fantastic creatures, strange surprises, and a whole new world of adventure.',
             s_image: 'The_Croods_S',
             l_image: 'The_Croods_L',
 		    stars: 5,
@@ -100,7 +100,7 @@ const fakeDB = {
         {
             id: 05,
             title: 'Honest Thief',
-            synopsis: 'A bank robber meets the love his life who works at the front desk of a storage facility where he hid $7 million in stolen loot',
+            synopsis: 'A bank robber meets the love his life who works at the front desk of a storage facility where he hid $7 million in stolen loot.',
             s_image: 'Honest_Thief_S',
             l_image: 'Honest_Thief_L',
 		    stars: 4,
@@ -123,7 +123,7 @@ const fakeDB = {
         {
             id: 06,
             title: 'Buddy Games',
-            synopsis: 'Josh Duhamel (Transformers) stars as the leader of a group of lifelong friends who reunite for the ultimate bro-fest contest in this star-studded comedy with Dax Shepard (CHiPs), Olivia Munn (Office Christmas Party) and Kevin Dillon ("Entourage")',
+            synopsis: 'Josh Duhamel (Transformers) stars as the leader of a group of lifelong friends who reunite for the ultimate bro-fest contest in this star-studded comedy with Dax Shepard (CHiPs), Olivia Munn (Office Christmas Party) and Kevin Dillon ("Entourage").',
             s_image: 'Buddy_Games_S',
             l_image: 'Buddy_Games_L',
 		    stars: 4,
@@ -146,7 +146,7 @@ const fakeDB = {
         {
             id: 07,
             title: 'The New Mutants',
-            synopsis: "In this terrifying, action-filled film based on the MARVEL comic series, five young people who demonstrate special powers are forced to undergo treatment at a secret institution -- allegedly to cure them of the dangers of their powers. But it's soon clear that their containment is part of a much bigger battle between the forces of good and evil",
+            synopsis: "In this terrifying, action-filled film based on the MARVEL comic series, five young people who demonstrate special powers are forced to undergo treatment at a secret institution -- allegedly to cure them of the dangers of their powers. But it's soon clear that their containment is part of a much bigger battle between the forces of good and evil.",
             s_image: 'The_New_Mutants_S',
             l_image: 'The_New_Mutants_L',
 		    stars: 4,
@@ -170,7 +170,7 @@ const fakeDB = {
         {
             id: 08,
             title: 'The Silence of the Lambs',
-            synopsis: 'An FBI trainee is assigned by her superior to interview an imprisoned, cannibalistic psychopath, Hannibal "the Cannibal" Lecter, in the hope that he may help uncover the identity of an elusive serial killer',
+            synopsis: 'An FBI trainee is assigned by her superior to interview an imprisoned, cannibalistic psychopath, Hannibal "the Cannibal" Lecter, in the hope that he may help uncover the identity of an elusive serial killer.',
             s_image: 'The_Silence_of_the_Lambs_S',
             l_image: 'The_Silence_of_the_Lambs_L',
 		    stars: 5,
@@ -194,7 +194,7 @@ const fakeDB = {
         {
             id: 09,
             title: 'The Empty Man',
-            synopsis: 'This supernatural horror film, drawn from the Boom! Studios graphic novel, centers on shocking events originating in a small Midwestern town. After the mysterious disappearance of a group of teenagers, James Lasombra (James Badge Dale), a troubled retired cop, is thrust into action to investigate. Following leads that may tie a secretive occult-minded group to a terrifying local legend, he soon realizes that his life -- and the lives of those close to him -- are in terrible danger',
+            synopsis: 'This supernatural horror film, drawn from the Boom! Studios graphic novel, centers on shocking events originating in a small Midwestern town. After the mysterious disappearance of a group of teenagers, James Lasombra (James Badge Dale), a troubled retired cop, is thrust into action to investigate. Following leads that may tie a secretive occult-minded group to a terrifying local legend, he soon realizes that his life -- and the lives of those close to him -- are in terrible danger.',
             s_image: 'The_Empty_Man_S',
             l_image: 'The_Empty_Man_L',
 		    stars: 3,
@@ -217,7 +217,7 @@ const fakeDB = {
         {
             id: 10,
             title: 'Titanic',
-            synopsis: 'Leonardo DiCaprio and Kate Winslet light up the screen as Jack and Rose, the young lovers who find one another on the maiden voyage of the "unsinkable" R.M.S. Titanic. But when the doomed luxury liner collides with an iceberg in the frigid North Atlantic, their passionate love affair becomes a thrilling race for survival',
+            synopsis: 'Leonardo DiCaprio and Kate Winslet light up the screen as Jack and Rose, the young lovers who find one another on the maiden voyage of the "unsinkable" R.M.S. Titanic. But when the doomed luxury liner collides with an iceberg in the frigid North Atlantic, their passionate love affair becomes a thrilling race for survival.',
             s_image: 'Titanic_S',
             l_image: 'Titanic_L',
 		    stars: 5,
@@ -232,7 +232,7 @@ const fakeDB = {
             language: 'English',
             score: 89,
 		    UHD: false,
-            HDX: '080p, Dolby Digital Plus 5.1',
+            HDX: '1080p, Dolby Digital Plus 5.1',
             SD: '480p, Enhanced Widescreen, Dolby Digital Plus Stereo',
             CC: 'English'
         },
@@ -288,7 +288,7 @@ const fakeDB = {
         {
             id: 13,
             title: 'Fringe: Season 1',
-            synopsis: 'The first electrifying season of FRINGE follows an unlikely trio who uncover a deadly mystery that may be part of a larger and more disturbing pattern that lives somewhere between science fiction and reality',
+            synopsis: 'The first electrifying season of FRINGE follows an unlikely trio who uncover a deadly mystery that may be part of a larger and more disturbing pattern that lives somewhere between science fiction and reality.',
             s_image: 'Fringe_Season_1_S',
             l_image: 'Fringe_Season_1_L',
 		    stars: 5,
@@ -406,7 +406,7 @@ const fakeDB = {
         {
             id: 18,
             title: 'The Walking Dead: Season 1',
-            synopsis: "After waking from a coma in an abandoned hospital, police officer Rick Grimes finds the world he knew gone - ravaged by a zombie epidemic of apocalyptic proportions. Nearby, on the outskirts of Atlanta, a small encampment struggles to survive as 'the dead' stalk them at every turn. Can Rick and the others hold onto their humanity as they fight to live in this terrifying new world? And, amidst dire conditions and personal rivalries, will they ultimately survive one another",
+            synopsis: "After waking from a coma in an abandoned hospital, police officer Rick Grimes finds the world he knew gone - ravaged by a zombie epidemic of apocalyptic proportions. Nearby, on the outskirts of Atlanta, a small encampment struggles to survive as 'the dead' stalk them at every turn. Can Rick and the others hold onto their humanity as they fight to live in this terrifying new world? And, amidst dire conditions and personal rivalries, will they ultimately survive one another.",
             s_image: 'Babylon_5_Season_1_S',
             l_image: 'Babylon_5_Season_1_L',
 		    stars: 5,
@@ -452,7 +452,7 @@ const fakeDB = {
         {
             id: 20,
             title: 'Smallville: Season 1',
-            synopsis: "Between the boy Clark Kent thought he was and the man he is destined to become...lie the compelling stories of SMALLVILLE, the popular action series that reimagines the Superman saga from its roots. All twenty-one of the first season's episodes are here for you to watch, wonder and enjoy as a legend grows up in Smallville. As the years passed, it was painfully obvious that Clark possessed Herculean strength and other powers 'far beyond those of mortal men.'",
+            synopsis: "Between the boy Clark Kent thought he was and the man he is destined to become...lie the compelling stories of SMALLVILLE, the popular action series that reimagines the Superman saga from its roots. All twenty-one of the first season's episodes are here for you to watch, wonder and enjoy as a legend grows up in Smallville. As the years passed, it was painfully obvious that Clark possessed Herculean strength and other powers 'far beyond those of mortal men.",
             s_image: 'Smallville_Season_1_S',
             l_image: 'Smallville_Season_1_L',
 		    stars: 5,

@@ -32,6 +32,8 @@ exports.getAllShowsView = (req,res,next)=> {
 exports.getAnItemDetailsView = (req,res,next)=> {
     res.render("itemDetails",{
         item : req.item,
-        suggestions: req.relatedItems
+        suggestions: req.relatedItems,
+        session: req.session
     })
+    console.log("Session: ",req.session);
 }

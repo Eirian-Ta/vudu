@@ -1,5 +1,6 @@
 <section class="item-control">
-    <h2>Update item</h2>
+    <br>
+    <h2>UPDATE ITEM</h2>
     
     <form method="POST" action="/update/{{_id}}?method=PUT" enctype="multipart/form-data">
 
@@ -25,14 +26,14 @@
             <option value="TV-14" {{#if_eq rating "TV-14"}} selected {{/if_eq}}>TV-14</option>
         </select>
 
+        <label>Gerne (give 2 gernes, and use ',' to separate them)</label>
+        <input type="text" name="gernes" id="gernes" value={{gernes}}> <br><br>
+
         <label>Small Poster</label>
         <input type="file" name="s_image" id="s_image" accept=".gif,.jpg,.png" >{{s_image}} <br><br>
 
         <label>Large Poster</label>
         <input type="file" name="l_image" id="l_image" accept=".gif,.jpg,.png">{{l_image}} <br><br>
-
-        <label>Gerne (give 2 gernes, and use ',' to separate them)</label>
-        <input type="text" name="gernes" id="gernes" value={{gernes}}> <br><br>
 
         <label>Stars</label>
         <input type="text" name="stars" id="stars" value={{stars}}> <br><br>
@@ -70,7 +71,8 @@
         <label>CC</label>
         <input type="text" name="cc" id="cc" value={{CC}}> <br><br>
 
-        <input type="submit" value="Update Item">
+        <input class="btn" type="submit" value="Update Item">
 
     </form>
+    <br>
 </section>

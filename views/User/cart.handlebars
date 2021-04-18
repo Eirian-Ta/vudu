@@ -1,0 +1,42 @@
+<section id="cart">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">ITEM</th>
+                <th scope="col">TYPE</th>
+                <th scope="col">PRICE</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each items}}
+                <tr>
+                    <th scope="col"><a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}" alt=""></a></th>
+                    <th scope="col">{{this.type}}</th>
+                    <th scope="col">{{this.price}}</th>
+                    <th scope="col"><a href="/cart/delete/{{this.id}}" class="btn" onclick="return confirm('Are you sure you want to remove this item?')">Remove</a></th>
+                </tr>
+            {{/each}}
+            <tr>
+                <td colspan="4">
+                    Total Quantity: {{qty}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    Total Amount: {{total}}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <ul id="cart-actions">
+        <li>
+            <a href="/" class="btn">Continue Browsing</a>
+        </li>
+        <li>
+            <a href="/checkout" class="btn">Confirm Order</a>
+        </li>
+    </ul>
+
+</section>

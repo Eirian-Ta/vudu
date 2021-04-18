@@ -77,6 +77,11 @@ h2 {
 /*** Main Nav ***/
 header {
   background: linear-gradient(90deg, #017bc5 33%, #024e7c 69%, #041c2c 100%); }
+  header .badge {
+    margin-left: .5rem;
+    padding: .7rem;
+    background: chocolate;
+    border-radius: 50%; }
   header .main-nav {
     display: flex;
     justify-content: space-between; }
@@ -315,6 +320,11 @@ footer {
 /********** ADD-ITEM & EDIT ITEM PAGE*********/
 .item-control {
   color: white; }
+  .item-control h2, .item-control h3 {
+    text-align: center; }
+  .item-control h3 {
+    color: red;
+    font-size: 1rem; }
   .item-control form {
     width: 500px;
     max-width: 100vw; }
@@ -322,3 +332,39 @@ footer {
       width: 100%; }
     .item-control form select {
       width: 25%; }
+    .item-control form .btn {
+      background: #017bc5;
+      color: white; }
+
+/********** ITEM DASHBOARD **************/
+#item-dashboard {
+  color: white;
+  font-size: 1.5rem; }
+  #item-dashboard form, #item-dashboard #items-links-holder {
+    text-align: center; }
+  #item-dashboard #items-links-holder a {
+    margin: 2rem auto; }
+  #item-dashboard a {
+    color: #017bc5;
+    background: white;
+    border-radius: .3rem;
+    padding: .3rem;
+    display: block;
+    margin: .5rem;
+    max-width: 11rem; }
+  #item-dashboard table {
+    margin: 0 auto; }
+    #item-dashboard table td, #item-dashboard table th {
+      width: 10rem;
+      max-width: 10rem;
+      text-align: center;
+      background: #041C2C;
+      border: solid 1px white; }
+      #item-dashboard table td img, #item-dashboard table th img {
+        max-width: 100%; }
+
+/********** CART *********/
+#cart table {
+  color: white;
+  text-align: center;
+  font-size: 1.5rem; }

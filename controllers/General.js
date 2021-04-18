@@ -4,10 +4,10 @@ const path = require("path");
 const itemModel = require("../models/Item.js");
 const itemProcess = require("../middleware/itemProcess.js")
 const generalService = require("../services/generalService.js")
+const isAuthenticated = require("../middleware/auth")
+const sgMail = require('@sendgrid/mail');
 
-
-//imported module 
-const fakeDB  = require("../models/FakeDB.js");
+const Cart = require('../models/Cart.js');
 
 
 /*GENERAL ROUTES*/
@@ -62,7 +62,7 @@ router.get("/items/:id",itemProcess.getAnItem,itemProcess.getSimilarGerneItems,g
 /**************** ADMIN DASHBOARD **********************/
 
 //List all Items in Admin Dashboard
-router.get("/list",itemProcess.getAllItems, (req,res)=>{
+router.get("/list",isAuthenticated,itemProcess.getAllItems, (req,res)=>{
     console.log("Items: ",res.body);
     res.render("Item/itemDashboard", {
         items: req.allItems
@@ -70,14 +70,14 @@ router.get("/list",itemProcess.getAllItems, (req,res)=>{
 })
 
 //Route to direct admin to Add Item form
-router.get("/add",(req,res)=>
+router.get("/add",isAuthenticated,(req,res)=>
 {
     res.render("Item/itemAddForm");
 });
 
 
 //Route to process user's request and data when the user submits the add task form
-router.post("/add",(req,res)=>
+router.post("/add",isAuthenticated,(req,res)=>
 {
     var err;
     const allowedExt = ["jpg"||"gif"||"png"];
@@ -156,7 +156,7 @@ router.post("/add",(req,res)=>
 
 //Route to direct user to edit task form
 // `:` means dynamic
-router.get("/edit/:id",itemProcess.getAnItem,(req,res)=>{
+router.get("/edit/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
     const {
         _id,
         title,
@@ -207,7 +207,7 @@ router.get("/edit/:id",itemProcess.getAnItem,(req,res)=>{
 
 
 //Route to update user data after they submit the form
-router.put("/update/:id",(req,res)=>{
+router.put("/update/:id",isAuthenticated,(req,res)=>{
     const item =
     {
         title: req.body.title,
@@ -249,7 +249,7 @@ router.put("/update/:id",(req,res)=>{
 })
 
 //router to delete user
-router.delete("/delete/:id",(req,res)=>{
+router.delete("/delete/:id",isAuthenticated,(req,res)=>{
         itemModel.deleteOne({_id:req.params.id})
     .then(()=>{
         res.redirect("/list");
@@ -259,11 +259,148 @@ router.delete("/delete/:id",(req,res)=>{
 
 
 
+/**************** CART **********************/
+
+router.get("/cart",isAuthenticated,(req,res)=>{
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    res.render("User/cart",{
+        title : "Cart",
+        items: cart.items,
+        qty: cart.totalQty,
+        total: cart.totalPrice
+    });
+})
+
+router.get("/addToCart/rent/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
+    req.item.price = req.item.rent;
+    req.item.type = "Rent";
+    console.log(req.item);
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.add(req.item);
+    req.session.cart = cart;
+    console.log(req.session.cart);
+    res.redirect(`/items/${req.item.id}`);
+})
+
+router.get("/addToCart/buy/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
+    req.item.price = req.item.purchase;
+    req.item.type = "Purchase";
+    console.log(req.item);
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.add(req.item);
+    req.session.cart = cart;
+    console.log(req.session.cart);
+    res.redirect(`/items/${req.item.id}`);
+})
+
+router.get("/cart/delete/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.remove(req.item);
+    req.session.cart = cart;
+    //console.log(req.session.cart);
+    res.render("User/cart",{
+        title : "Cart",
+        items: cart.items,
+        qty: cart.totalQty,
+        total: cart.totalPrice
+    });
+})
 
 
+router.get("/checkout",isAuthenticated,(req,res,next)=> {
+    const emailContent = `
+    <table border="1">
+        <thead>
+            <tr>
+                <th scope="col">ITEM</th>
+                <th scope="col">TYPE</th>
+                <th scope="col">PRICE</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${req.session.cart.items.map(item=> 
+                    `<tr>
+                        <th scope="col"><img width="80" src="/images/posters/${item.s_image}" alt=""></a></th>
+                        <th scope="col">${item.type}</th>
+                    <th scope="col">${item.price}</th>                 
+                    </tr>`           
+            )}
+            <tr>
+                <td colspan="3">
+                    Total Quantity: ${req.session.cart.totalQty}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    Total Amount: ${req.session.cart.totalPrice}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    `
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    const msg = {
+    to: req.session.userInfo.email,
+    from: 'tta6@myseneca.ca', 
+    subject: 'Order Confirmation',
+    text: `Thanh you for your order!`,
+    html: emailContent,
+    }
+    sgMail
+    .send(msg)
+    .then(() => {
+        console.log('Email sent')
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+    delete req.session.cart;
+    res.redirect("/");
+});
 
 
+router.post("/items/search", 
+    isAuthenticated,         
+    itemProcess.getAllItems, 
+    itemProcess.getAllMoviesFeatured,
+    itemProcess.getAllShowsFeatured,
+    itemProcess.getAllMovies,
+    itemProcess.getAllShows,
+    (req,res,next)=> {
+        console.log("Req:", req.body['items-search']);
+        switch (req.body['items-search']) {
+            case 'all':
+                res.render("Item/itemDashboard", {
+                    items: req.allItems
+                });
+                break;
+            case 'movies':
+                res.render("Item/itemDashboard", {
+                    items: req.movies
+                });
+                break;
+            case 'fmovies':
+                res.render("Item/itemDashboard", {
+                    items: req.fmovies
+                });
+                break;
+            case 'shows':
+                res.render("Item/itemDashboard", {
+                    items: req.shows
+                });
+                break;
+            case 'fshows':
+                res.render("Item/itemDashboard", {
+                    items: req.fshows
+                });
+                break;           
+            default:
+                console.log(`Wrong Input for items-search`);
+        }
 
+})
 
 
 

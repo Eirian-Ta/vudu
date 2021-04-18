@@ -19,7 +19,9 @@
             </li>
             {{/if}}
             <li><a href="/search"><img id="search" src="/images/search_icon.png" alt=""></a></li>
-            <li><a href="/search">Cart</a></li>
+            {{#if user}}
+                <li><a href="/cart">Cart<span class="badge">{{session.cart.totalQty}}</span></a></li>
+            {{/if}}
 
         </ul>
     </nav>

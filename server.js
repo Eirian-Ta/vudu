@@ -61,7 +61,6 @@ app.use(session({
   }))
 
 app.use((req,res,next)=>{
-    
     res.locals.user=req.session.userInfo;
 
     next();

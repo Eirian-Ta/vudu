@@ -1,40 +1,40 @@
-<h2>Item Dashboard</h2>
- 
- <section class="tasks-container">
-   
 
-     <form method="POST" action="/task/search">
+ <section id="item-dashboard">
+     <br>
+     <form method="POST" action="/items/search">
         <label>Search By</label>
-        <select name="task-search">
-                <option value="all">All Items</option>
-                <option value="movies">All Movies</option>
-                <option value="fmovies">Featured Movies</option>
-                <option value="shows">All TV Shows</option>
-                <option value="fshows">Featured TV Shows</option>
+        <select name="items-search">
+            <option value="all">All Items</option>
+            <option value="movies">All Movies</option>
+            <option value="fmovies">Featured Movies</option>
+            <option value="shows">All TV Shows</option>
+            <option value="fshows">Featured TV Shows</option>
         </select>
         <input type="submit" value="Search">
-     </form> <br><br>
-
-    <table border="1" style="text-align: center;">
+     </form>
+    <div id="items-links-holder">
+        <a href="/add">Add an Item</a>
+    </div>
+    <table>
         <thead>
-                <th>Picture</th>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Operation</th>
+                <th>PICTURE</th>
+                <th>TITLE</th>
+                <th>DATE</th>
+                <th>OPERATION</th>
         </thead>
         <tbody>
             
            {{#each items}}
                 <tr>
                    <td>
-                        <a href="" class="item-title"><img src="{{this.s_image}}" alt=""></a>
+                        <a href="" class="item-title"><img src="/images/posters/{{this.s_image}}" alt=""></a>
                    </td>
                    <td>
-                       <span>{{this.title}}</span>
+                       {{this.title}}
                       
                    </td>
                    <td>
-                        <span>{{this.date}}</span>
+                        {{this.date}}
                    </td>
                    <td>
                         <a href="/edit/{{this.id}}" class="edit-delete-button">Edit</a>
@@ -50,10 +50,7 @@
 
     </tbody>
     </table>
+    <br>
  
 </section>
-
-<div id="items-links-holder">
-    <a href="/add">Add an Item</a>
-</div>
 

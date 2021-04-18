@@ -25,4 +25,5 @@ router.get("/admin-dashboard",isAuthenticated,userService.getAdminDashboardView)
 
 router.get("/logout",userService.processLogout);
 
+
 module.exports=router;
