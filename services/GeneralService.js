@@ -39,5 +39,5 @@ exports.getAnItemDetailsView = (req,res,next)=> {
         suggestions: req.relatedItems,
         session: req.session
     })
-    console.log("Session: ",req.session);
+    //console.log("Session: ",req.session);
 }

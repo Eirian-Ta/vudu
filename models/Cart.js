@@ -20,11 +20,13 @@ module.exports = function Cart(oldCart) {
     this.items = oldCart.items || [];
     this.totalQty = oldCart.totalQty || 0;
     this.totalPrice = oldCart.totalPrice || 0;
+
     this.add = (item) => {
         this.items.push(item);
         this.totalQty++;
         this.totalPrice+=item.price;
     };
+    
     this.remove = (item)=> {
         const itemToRemove = this.items.find(i=> i.id==item.id);
         this.items=this.items.filter(i=> {

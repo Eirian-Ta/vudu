@@ -266,7 +266,9 @@ footer {
 
 /********** LISTING PAGES *********/
 .list img {
-  margin: .6rem; }
+  margin: .6rem;
+  width: 168px;
+  max-height: 238px; }
 
 /********** ITEM DETAILS *********/
 .item-details * {
@@ -291,13 +293,16 @@ footer {
         margin-right: 3rem; }
         .item-details .general-details .info1 .ranking .stars img {
           width: 1rem; }
-    .item-details .general-details .info1 .price p {
+    .item-details .general-details .info1 .price a {
       float: left;
       color: white;
       background: #017bc5;
       border-radius: 3px;
       padding: .2rem 2rem;
       margin: .5rem; }
+      .item-details .general-details .info1 .price a:hover {
+        background: white;
+        color: #041C2C; }
 
 .item-details .more-info {
   margin: 3rem auto; }
@@ -381,6 +386,10 @@ footer {
   #cart a {
     background: white;
     border-radius: .3rem; }
+    #cart a:hover {
+      background: #017bc5;
+      color: white;
+      border-radius: .3rem; }
   #cart #cart-actions {
     display: flex;
     justify-content: center; }

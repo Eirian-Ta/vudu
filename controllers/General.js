@@ -63,7 +63,7 @@ router.get("/items/:id",itemProcess.getAnItem,itemProcess.getSimilarGerneItems,g
 
 //List all Items in Admin Dashboard
 router.get("/list",isAuthenticated,itemProcess.getAllItems, (req,res)=>{
-    console.log("Items: ",res.body);
+    //console.log("Items: ",res.body);
     res.render("Item/itemDashboard", {
         items: req.allItems
     });
@@ -157,7 +157,7 @@ router.post("/add",isAuthenticated,(req,res)=>
 //Route to direct user to edit task form
 // `:` means dynamic
 router.get("/edit/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
-    console.log("Item pulled:", req.item);
+    //console.log("Item pulled:", req.item);
     res.render("Item/itemEditForm", {
         item: req.item
     });
@@ -348,7 +348,7 @@ router.get("/cart",isAuthenticated,(req,res)=>{
         titlePage : "Cart",
         items: cart.items,
         qty: cart.totalQty,
-        total: cart.totalPrice,
+        total: cart.totalPrice.toFixed(2),
         session: req.session
     });
 })
@@ -356,7 +356,7 @@ router.get("/cart",isAuthenticated,(req,res)=>{
 router.get("/addToCart/rent/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
     req.item.price = req.item.rent;
     req.item.type = "Rent";
-    console.log(req.item);
+    //console.log(req.item);
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     cart.add(req.item);
     req.session.cart = cart;
@@ -367,24 +367,24 @@ router.get("/addToCart/rent/:id",isAuthenticated,itemProcess.getAnItem,(req,res)
 router.get("/addToCart/buy/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
     req.item.price = req.item.purchase;
     req.item.type = "Purchase";
-    console.log(req.item);
+    //console.log(req.item);
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     cart.add(req.item);
     req.session.cart = cart;
-    console.log(req.session.cart);
+    //console.log(req.session.cart);
     res.redirect(`/items/${req.item.id}`);
 })
 
 router.get("/cart/delete/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
     var cart = new Cart(req.session.cart ? req.session.cart : {});
-    console.log ("Item need to remove:",req.item );
+    //console.log ("Item need to remove:",req.item );
     cart.remove(req.item);
     req.session.cart = cart;
     //console.log(req.session.cart);
     res.render("User/cart",{
         titlePage : "Cart",
         items: cart.items,
-        qty: cart.totalQty,
+        qty: cart.totalQty.toFixed(2),
         total: cart.totalPrice
     });
 })
@@ -452,7 +452,7 @@ router.post("/items/search",
     itemProcess.getAllMovies,
     itemProcess.getAllShows,
     (req,res,next)=> {
-        console.log("Req:", req.body['items-search']);
+        //console.log("Req:", req.body['items-search']);
         switch (req.body['items-search']) {
             case 'all':
                 res.render("Item/itemDashboard", {

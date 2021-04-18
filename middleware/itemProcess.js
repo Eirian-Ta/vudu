@@ -1,11 +1,10 @@
 const express = require('express')
-const router = express.Router();
-const path = require("path");
 const itemModel = require("../models/Item.js");
 
 exports.getAllItems = (req,res,next)=> {
     itemModel.find()
     .then((items)=> {
+        console.log("**************************************** SIZE:",items.length);
         const filteredItems = items.map(item=>{
             return {
                 id: item._id,
