@@ -368,3 +368,32 @@ footer {
   color: white;
   text-align: center;
   font-size: 1.5rem; }
+
+/************ SEARCH **********/
+#search-page {
+  background: linear-gradient(90deg, #017bc5 33%, #024e7c 69%, #041c2c 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  min-height: 100vh; }
+  #search-page form {
+    margin-top: 3rem;
+    text-align: center; }
+    #search-page form input {
+      max-width: 80vw;
+      width: 50rem;
+      padding: .5rem 2rem;
+      font-size: 1.5rem;
+      border-radius: 1rem;
+      margin: .3rem; }
+    #search-page form .btn {
+      background: #017bc5;
+      color: white;
+      border: #041C2C 2px solid; }
+  #search-page #close-icon {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2.5rem; }

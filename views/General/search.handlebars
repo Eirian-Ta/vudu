@@ -1,16 +1,14 @@
-<section>
-    <a href="/"><img src="/images/close_icon.svg" alt=""></a>
-    <h2>Search for Movies, TV Shows or People</h2>
+<section id="search-page">
+    <a href="/"><img id="close-icon" src="/images/close_icon.svg" alt=""></a>
     <form action="/search" method="POST">
         <label class="visuallyhidden" for="keyword"><b>Keyword</b></label>
-        <input type="text" placeholder="Seacrch for Movies, TV Shows or People" name="kw" value={{kw}}>
+        <input type="text" placeholder="Search for Title of Movies or TV Shows" name="kw" value={{kw}}>
 
-        <input type="submit" value="Search" class="btn btn1">
+        <input type="submit" value="SEARCH" class="btn">
     </form>
     <div class="list resultlist">
         {{#each items}}
-            <p>{{this.title}}</p>
-            {{!-- <a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}.jfif" alt=""></a> --}}
+            <a href="/items/{{this.id}}"><img src="/images/posters/{{this.poster}}" alt=""></a>
         {{/each}}
     </div>
 </section>

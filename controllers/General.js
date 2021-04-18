@@ -26,14 +26,14 @@ router.get("/search",(req,res)=>{
 })
 
 router.post("/search",(req,res)=>{
-    //const keywordArr = req.body.kw.split(" "); // a bit complicated, not know how to do yet
+    const keywordArr = req.body.kw.split(" "); 
 
-    itemModel.find({}).where("title").regex(`^.*${req.body.kw}.*$`)
-    // itemModel.find({title:req.body.kw})
+    itemModel.find({"title": { $regex: new RegExp(keywordArr.join("|"), "i") } })
     .then((items)=>{
         const filteredItem = items.map(item=>{
             return {
-                title:item.title
+                poster:item.s_image,
+                id: item._id
             }
         });
         res.render("general/search",{
