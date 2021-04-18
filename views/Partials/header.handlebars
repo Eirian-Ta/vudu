@@ -5,7 +5,12 @@
             <li><a href="/movielisting">Movies</a></li>
             <li><a href="/tvshowlisting">TV</a></li>
             <li><a href="">Free</a></li>
-            <li><a href="">MyVudu</a></li>
+            {{#if_eq user.type "user"}}
+                <li><a href="user/user-dashboard">MyVudu</a></li>
+            {{/if_eq}}
+            {{#if_eq user.type "admin"}}
+                <li><a href="user/admin-dashboard">MyVudu</a></li>
+             {{/if_eq}}
         </ul>
         <ul>
             {{#if user}}
@@ -18,9 +23,9 @@
                 </ul> 
             </li>
             {{/if}}
-            <li><a href="/search"><img id="search" src="/images/search_icon.png" alt=""></a></li>
+            <li><a href="/search"><img class="icon"  src="/images/search_icon.png" alt=""></a></li>
             {{#if user}}
-                <li><a href="/cart">Cart<span class="badge">{{session.cart.totalQty}}</span></a></li>
+                <li><a href="/cart"><img class="icon" src="/images/cart-icon.svg" alt=""><span class="badge">{{session.cart.totalQty}}</span></a></li>
             {{/if}}
 
         </ul>

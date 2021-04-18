@@ -1,4 +1,5 @@
 <section id="cart">
+    <br>
     <table>
         <thead>
             <tr>
@@ -14,7 +15,7 @@
                     <th scope="col"><a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}" alt=""></a></th>
                     <th scope="col">{{this.type}}</th>
                     <th scope="col">{{this.price}}</th>
-                    <th scope="col"><a href="/cart/delete/{{this.id}}" class="btn" onclick="return confirm('Are you sure you want to remove this item?')">Remove</a></th>
+                    <th scope="col"><a href="/cart/delete/{{this.id}}" class="btn btn1" onclick="return confirm('Are you sure you want to remove this item?')">Remove</a></th>
                 </tr>
             {{/each}}
             <tr>
@@ -38,5 +39,5 @@
             <a href="/checkout" class="btn">Confirm Order</a>
         </li>
     </ul>
-
+<br>
 </section>

@@ -201,14 +201,16 @@ exports.processLoginForm = (req,res,next)=> {
 exports.getUserDashboardView = (req,res,next)=>{    
     res.render("User/userDashboard",{
         titlePage: "User Dashboard",
-        name: req.session.userName
+        name: req.session.userName,
+        session: req.session
     });
 }
 
 exports.getAdminDashboardView = (req,res,next)=> {
     res.render("User/adminDashboard",{
         titlePage: "Admin Dashboard",
-        name: req.session.userName
+        name: req.session.userName,
+        session: req.session
     });
 }
 

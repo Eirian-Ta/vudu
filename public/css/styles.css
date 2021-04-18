@@ -100,8 +100,9 @@ header {
           header .main-nav ul li:hover a {
             text-decoration: none;
             opacity: .5; }
-        header .main-nav ul li #search {
-          width: 2rem; }
+        header .main-nav ul li .icon {
+          width: 2rem;
+          color: white; }
     header .main-nav .dropdown-content {
       display: none !important;
       position: absolute;
@@ -364,10 +365,27 @@ footer {
         max-width: 100%; }
 
 /********** CART *********/
-#cart table {
-  color: white;
-  text-align: center;
-  font-size: 1.5rem; }
+#cart {
+  max-width: 100vw; }
+  #cart table {
+    color: white;
+    margin: 0 auto;
+    max-width: 100%; }
+    #cart table td, #cart table th {
+      width: 10rem;
+      text-align: center;
+      background: #041C2C;
+      border: solid 1px white; }
+      #cart table td img, #cart table th img {
+        max-width: 100%; }
+  #cart a {
+    background: white;
+    border-radius: .3rem; }
+  #cart #cart-actions {
+    display: flex;
+    justify-content: center; }
+    #cart #cart-actions * {
+      margin: .5rem; }
 
 /************ SEARCH **********/
 #search-page {

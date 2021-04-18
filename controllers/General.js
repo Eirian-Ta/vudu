@@ -348,7 +348,8 @@ router.get("/cart",isAuthenticated,(req,res)=>{
         titlePage : "Cart",
         items: cart.items,
         qty: cart.totalQty,
-        total: cart.totalPrice
+        total: cart.totalPrice,
+        session: req.session
     });
 })
 
@@ -376,6 +377,7 @@ router.get("/addToCart/buy/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=
 
 router.get("/cart/delete/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
     var cart = new Cart(req.session.cart ? req.session.cart : {});
+    console.log ("Item need to remove:",req.item );
     cart.remove(req.item);
     req.session.cart = cart;
     //console.log(req.session.cart);
