@@ -391,6 +391,7 @@ router.get("/cart/delete/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
 
 
 router.get("/checkout",isAuthenticated,(req,res,next)=> {
+    const image = base64Img.base64Sync(`/images/posters/${item.s_image}`)
     const emailContent = `
     <table border="1">
         <thead>
@@ -403,9 +404,9 @@ router.get("/checkout",isAuthenticated,(req,res,next)=> {
         <tbody>
             ${req.session.cart.items.map(item=> 
                     `<tr>
-                        <th scope="col"><img width="80" src="https://vudu-eirianversion.herokuapp.com/images/posters/${item.s_image}" alt=""></a></th>
+                        <th scope="col">${item.title}</th>    
                         <th scope="col">${item.type}</th>
-                    <th scope="col">${item.price}</th>                 
+                        <th scope="col">${item.price}</th>                 
                     </tr>`           
             )}
             <tr>
