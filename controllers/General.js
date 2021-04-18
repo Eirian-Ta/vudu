@@ -157,53 +157,11 @@ router.post("/add",isAuthenticated,(req,res)=>
 //Route to direct user to edit task form
 // `:` means dynamic
 router.get("/edit/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
-    const {
-        id,
-        title,
-        synopsis,
-        s_image,
-        l_image,
-        stars,
-        rent,
-        purchase,
-        featured,
-        gernes,
-        date,
-        length,
-        rating,
-        studio,
-        language,
-        score,
-        UHD,
-        HDX,
-        SD,
-        CC
-    }=req.item;
-    res.render("Item/itemEditForm",{
-        id,
-        title,
-        synopsis,
-        s_image,
-        l_image,
-        stars,
-        rent,
-        purchase,
-        featured,
-        gernes,
-        date,
-        length,
-        rating,
-        studio,
-        language,
-        score,
-        UHD,
-        HDX,
-        SD,
-        CC
-    })
+    console.log("Item pulled:", req.item);
+    res.render("Item/itemEditForm", {
+        item: req.item
+    });
 })
-
-
 
 
 //Route to update user data after they submit the form

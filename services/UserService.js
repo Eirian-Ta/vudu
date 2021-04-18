@@ -169,7 +169,7 @@ exports.processLoginForm = (req,res,next)=> {
                     }
                     else
                     {
-                        errors.errPsw = "password is incorrect";
+                        errors.errPsw = "Email or password is incorrect";
                         res.render("User/login",{
                             titlePage: "Log In Page",
                             usn: req.body.uname,
