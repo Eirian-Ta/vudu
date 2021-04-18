@@ -1,0 +1,59 @@
+<h2>Item Dashboard</h2>
+ 
+ <section class="tasks-container">
+   
+
+     <form method="POST" action="/task/search">
+        <label>Search By</label>
+        <select name="task-search">
+                <option value="all">All Items</option>
+                <option value="movies">All Movies</option>
+                <option value="fmovies">Featured Movies</option>
+                <option value="shows">All TV Shows</option>
+                <option value="fshows">Featured TV Shows</option>
+        </select>
+        <input type="submit" value="Search">
+     </form> <br><br>
+
+    <table border="1" style="text-align: center;">
+        <thead>
+                <th>Picture</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Operation</th>
+        </thead>
+        <tbody>
+            
+           {{#each items}}
+                <tr>
+                   <td>
+                        <a href="" class="item-title"><img src="{{this.s_image}}" alt=""></a>
+                   </td>
+                   <td>
+                       <span>{{this.title}}</span>
+                      
+                   </td>
+                   <td>
+                        <span>{{this.date}}</span>
+                   </td>
+                   <td>
+                        <a href="/edit/{{this.id}}" class="edit-delete-button">Edit</a>
+                        <a href="/delete/{{this.id}}?method=DELETE" class="edit-delete-button" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                   </td> 
+                </tr>
+            
+            {{else}}
+                <td colspan="4">
+                    <p>No items in the database</p>
+                </td>
+            {{/each}}
+
+    </tbody>
+    </table>
+ 
+</section>
+
+<div id="items-links-holder">
+    <a href="/add">Add an Item</a>
+</div>
+

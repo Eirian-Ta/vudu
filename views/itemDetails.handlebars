@@ -1,13 +1,13 @@
 <section class="item-details">
     <div
     class="general-details"
-     style ="background: linear-gradient(to right, rgba(4,28,44,1),rgba(4,28,44,1),rgba(0,0,0,.6),rgba(0,0,0,.1)), url('/images/posters/{{item.l_image}}.jpg') no-repeat ;"
+     style ="background: linear-gradient(to right, rgba(4,28,44,1),rgba(4,28,44,1),rgba(0,0,0,.6),rgba(0,0,0,.1)), url('/images/posters/{{item.l_image}}') no-repeat ;"
      >
-        <img src="/images/posters/{{item.s_image}}.jfif" alt="">
+        <img src="/images/posters/{{item.s_image}}" alt="">
         <div class="info1">
             <h2>{{item.title}}</h2>
             <p class="info2">
-                {{#each item.gerne}}
+                {{#each item.gernes}}
                 <span>{{this}} | </span>
                 {{/each}}
                 {{item.date}}
@@ -33,7 +33,7 @@
         <ul class="lightSlider">
             {{#each suggestions}}
                 <div class="container"> 
-                    <li><a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}.jfif" alt=""></a></li>
+                    <li><a href="/items/{{this.id}}"><img src="/images/posters/{{this.s_image}}" alt=""></a></li>
                 </div>
             {{/each}}
         </ul>

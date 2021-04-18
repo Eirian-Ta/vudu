@@ -1,0 +1,76 @@
+<section class="item-control">
+    <h2>Update item</h2>
+    
+    <form method="POST" action="/update/{{_id}}?method=PUT" enctype="multipart/form-data">
+
+        <label>Title</label>
+        <input type="text" name="title" id="title" value={{title}}> <br><br>
+
+        <label>Synopsis</label>
+        <textarea id="synopsis" name="synopsis">{{synopsis}}</textarea><br><br>
+
+        <label>Featured</label>
+        <select name="featured">
+            <option value="true" {{#if_eq featured true}} selected {{/if_eq}}>Yes</option>
+            <option value="false"{{#if_eq featured false}} selected {{/if_eq}}>No</option>
+        </select>
+
+        <label>Rating</label>
+        <select name="rating">
+            <option value="PG-13" {{#if_eq rating "PG-13"}} selected {{/if_eq}}>PG-13</option>
+            <option value="PG" {{#if_eq rating "PG"}} selected {{/if_eq}}>PG</option>
+            <option value="R" {{#if_eq rating "R"}} selected {{/if_eq}}>R</option>
+            <option value="TV-MA" {{#if_eq rating "TV-MA"}} selected {{/if_eq}}>TV-MA</option>
+            <option value="TV-PG" {{#if_eq rating "TV-PG"}} selected {{/if_eq}}>TV-PG</option>
+            <option value="TV-14" {{#if_eq rating "TV-14"}} selected {{/if_eq}}>TV-14</option>
+        </select>
+
+        <label>Small Poster</label>
+        <input type="file" name="s_image" id="s_image" accept=".gif,.jpg,.png" >{{s_image}} <br><br>
+
+        <label>Large Poster</label>
+        <input type="file" name="l_image" id="l_image" accept=".gif,.jpg,.png">{{l_image}} <br><br>
+
+        <label>Gerne (give 2 gernes, and use ',' to separate them)</label>
+        <input type="text" name="gernes" id="gernes" value={{gernes}}> <br><br>
+
+        <label>Stars</label>
+        <input type="text" name="stars" id="stars" value={{stars}}> <br><br>
+
+        <label>Rent</label>
+        <input type="text" name="rent" id="rent" value={{rent}}> <br><br>
+
+        <label>Purchase</label>
+        <input type="text" name="purchase" id="purchase" value={{purchase}}> <br><br>
+
+        <label>Year</label>
+        <input type="text" name="date" id="date" value={{date}}> <br><br>
+
+        <label>Length</label>
+        <input type="text" name="length" id="length" value={{length}}> <br><br>
+
+        <label>Studio</label>
+        <input type="text" name="studio" id="studio" value={{studio}}> <br><br>
+
+        <label>Language</label>
+        <input type="text" name="language" id="language" value={{language}}> <br><br>
+
+        <label>Score</label>
+        <input type="text" name="score" id="score" value={{score}}> <br><br>
+
+        <label>UHD</label>
+        <input type="text" name="uhd" id="uhd" value={{UHD}}> <br><br>
+
+        <label>HDX</label>
+        <input type="text" name="hdx" id="hdx" value={{HDX}}> <br><br>
+
+        <label>SD</label>
+        <input type="text" name="sd" id="sd" value={{SD}}> <br><br>
+
+        <label>CC</label>
+        <input type="text" name="cc" id="cc" value={{CC}}> <br><br>
+
+        <input type="submit" value="Update Item">
+
+    </form>
+</section>

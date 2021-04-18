@@ -1,0 +1,2 @@
+A session is typically a global variable or object that stores data about an authenticated user on the WEB server 
+

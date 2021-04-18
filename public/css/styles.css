@@ -67,7 +67,7 @@ ul {
 
 h2 {
   font-size: 1.4rem !important;
-  color: white; }
+  color: white !important; }
 
 .section-header {
   display: flex;
@@ -95,6 +95,8 @@ header {
           header .main-nav ul li:hover a {
             text-decoration: none;
             opacity: .5; }
+        header .main-nav ul li #search {
+          width: 2rem; }
     header .main-nav .dropdown-content {
       display: none !important;
       position: absolute;
@@ -309,3 +311,14 @@ footer {
   margin: 2rem 0; }
   .item-details .suggestions img {
     width: 140px; }
+
+/********** ADD-ITEM & EDIT ITEM PAGE*********/
+.item-control {
+  color: white; }
+  .item-control form {
+    width: 500px;
+    max-width: 100vw; }
+    .item-control form input, .item-control form textarea {
+      width: 100%; }
+    .item-control form select {
+      width: 25%; }
