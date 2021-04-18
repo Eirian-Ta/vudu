@@ -1,8 +1,9 @@
 <section class="item-control">
     <br>
     <h2>UPDATE ITEM</h2>
+    <h3>{{err}}</h3>
     
-    <form method="POST" action="/update/{{_id}}?method=PUT" enctype="multipart/form-data">
+    <form method="POST" action="/update/{{id}}?method=PUT" enctype="multipart/form-data">
 
         <label>Title</label>
         <input type="text" name="title" id="title" value={{title}}> <br><br>

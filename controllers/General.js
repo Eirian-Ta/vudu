@@ -21,7 +21,7 @@ router.get("/",
 //Search
 router.get("/search",(req,res)=>{
     res.render("General/search",{
-        title : "Search Page",
+        titlePage : "Search Page",
     });
 })
 
@@ -80,12 +80,12 @@ router.get("/add",isAuthenticated,(req,res)=>
 router.post("/add",isAuthenticated,(req,res)=>
 {
     var err;
-    const allowedExt = ["jpg"||"gif"||"png"];
-    if (allowedExt.every(e=>e!=req.files.s_image.name || e!=req.files.l_image.name))
+    const allowedExt = [".jpg",".gif",".png"];
+    if (allowedExt.every(e=>e!=(path.parse(req.files.s_image.name).ext.toLowerCase()) || e!=(path.parse(req.files.l_image.name).ext.toLowerCase())))
     {
         err = "Only jpgs, gifs, pngs can be uploaded!";
         res.render("Item/itemAddForm", {
-            title: "Add Item Page",
+            titlePage: "Add Item Page",
             title: req.body.title,
             synopsis: req.body.synopsis,
             stars: req.body.stars,
@@ -158,7 +158,7 @@ router.post("/add",isAuthenticated,(req,res)=>
 // `:` means dynamic
 router.get("/edit/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
     const {
-        _id,
+        id,
         title,
         synopsis,
         s_image,
@@ -180,7 +180,7 @@ router.get("/edit/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
         CC
     }=req.item;
     res.render("Item/itemEditForm",{
-        _id,
+        id,
         title,
         synopsis,
         s_image,
@@ -208,6 +208,8 @@ router.get("/edit/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
 
 //Route to update user data after they submit the form
 router.put("/update/:id",isAuthenticated,(req,res)=>{
+    var err;
+    const allowedExt = [".jpg",".gif",".png"];
     const item =
     {
         title: req.body.title,
@@ -228,24 +230,145 @@ router.put("/update/:id",isAuthenticated,(req,res)=>{
         SD: req.body.sd,
         CC: req.body.cc
     }
-    req.files.s_image.name=`${item.title}_${req.params.id}_s${path.parse(req.files.s_image.name).ext}`;
-    req.files.l_image.name=`${item.title}_${req.params.id}_l${path.parse(req.files.l_image.name).ext}`;
-    item.s_image= req.files.s_image.name;
-    item.l_image= req.files.l_image.name;
 
-    req.files.s_image.mv(`public/images/posters/${req.files.s_image.name}`)
-    .then(()=> {
-        console.log("1:", item);
-        req.files.l_image.mv(`public/images/posters/${req.files.l_image.name}`)
-        .then(()=> {
-            console.log("2:", item);
-            itemModel.updateOne({_id:req.params.id},item)
-            .then(()=>{
-                res.redirect("/list");
-            })
+    if (req.files)
+    {
+        if (req.files.s_image) {
+            if (!(allowedExt.every(e=>e!=(path.parse(req.files.s_image.name).ext.toLowerCase()))))
+            {
+                req.files.s_image.name=`${item.title}_${req.params.id}_s${path.parse(req.files.s_image.name).ext}`;
+                item.s_image= req.files.s_image.name;
+                
+                if (req.files.l_image) {
+                    if (!(allowedExt.every(e=>e!=(path.parse(req.files.l_image.name).ext.toLowerCase()))))
+                    {
+                        req.files.l_image.name=`${item.title}_${req.params.id}_l${path.parse(req.files.l_image.name).ext}`;
+                        item.l_image= req.files.l_image.name;
+            
+                        req.files.s_image.mv(`public/images/posters/${req.files.s_image.name}`)
+                        .then(()=> {
+                            req.files.l_image.mv(`public/images/posters/${req.files.l_image.name}`)
+                            .then(()=> {
+                                itemModel.updateOne({_id:req.params.id},item)
+                                .then(()=>{
+                                    res.redirect("/list");
+                                })
+                            })
+                        })
+                        .catch(err=>console.log(`Error happened when updating data from the database: ${err}`));   
+                    }
+                    else {
+                        err = "Only jpgs, gifs, pngs can be uploaded!";
+                        res.render("Item/itemEditForm", {
+                            titlePage: "Edit Item Page",
+                            title: req.body.title,
+                            synopsis: req.body.synopsis,
+                            stars: req.body.stars,
+                            rent: req.body.rent,
+                            purchase: req.body.purchase,
+                            featured: req.body.featured,
+                            gernes: req.body.gernes.split(','),
+                            date: req.body.date,
+                            length: req.body.length,
+                            rating: req.body.rating,
+                            studio: req.body.studio,
+                            language: req.body.language,
+                            score: req.body.score,
+                            UHD: req.body.uhd,
+                            HDX: req.body.hdx,
+                            SD: req.body.sd,
+                            CC: req.body.cc,
+                            err: err            
+                        })                              
+                    }
+                }
+                else {
+                    req.files.s_image.mv(`public/images/posters/${req.files.s_image.name}`)
+                    .then(()=> {
+                        itemModel.updateOne({_id:req.params.id},item)
+                        .then(()=>{
+                            res.redirect("/list");
+                        })
+                    })
+                .catch(err=>console.log(`Error happened when updating data from the database: ${err}`));   
+                }
+            }
+            else {
+                err = "Only jpgs, gifs, pngs can be uploaded!";
+                res.render("Item/itemEditForm", {
+                    titlePage: "Edit Item Page",
+                    title: req.body.title,
+                    synopsis: req.body.synopsis,
+                    stars: req.body.stars,
+                    rent: req.body.rent,
+                    purchase: req.body.purchase,
+                    featured: req.body.featured,
+                    gernes: req.body.gernes.split(','),
+                    date: req.body.date,
+                    length: req.body.length,
+                    rating: req.body.rating,
+                    studio: req.body.studio,
+                    language: req.body.language,
+                    score: req.body.score,
+                    UHD: req.body.uhd,
+                    HDX: req.body.hdx,
+                    SD: req.body.sd,
+                    CC: req.body.cc,
+                    err: err            
+                })
+            }           
+        }
+        else {
+            if (req.files.l_image) {
+                if (!(allowedExt.every(e=>e!=(path.parse(req.files.l_image.name).ext.toLowerCase()))))
+                {
+                    req.files.l_image.name=`${item.title}_${req.params.id}_l${path.parse(req.files.l_image.name).ext}`;
+                    item.l_image= req.files.l_image.name;
+    
+                    req.files.l_image.mv(`public/images/posters/${req.files.l_image.name}`)
+                    .then(()=> {
+                        itemModel.updateOne({_id:req.params.id},item)
+                        .then(()=>{
+                            res.redirect("/list");
+                        })
+                    })
+                .catch(err=>console.log(`Error happened when updating data from the database: ${err}`));   
+                }
+                else {
+                    err = "Only jpgs, gifs, pngs can be uploaded!";
+                    res.render("Item/itemEditForm", {
+                        titlePage: "Edit Item Page",
+                        title: req.body.title,
+                        synopsis: req.body.synopsis,
+                        stars: req.body.stars,
+                        rent: req.body.rent,
+                        purchase: req.body.purchase,
+                        featured: req.body.featured,
+                        gernes: req.body.gernes.split(','),
+                        date: req.body.date,
+                        length: req.body.length,
+                        rating: req.body.rating,
+                        studio: req.body.studio,
+                        language: req.body.language,
+                        score: req.body.score,
+                        UHD: req.body.uhd,
+                        HDX: req.body.hdx,
+                        SD: req.body.sd,
+                        CC: req.body.cc,
+                        err: err            
+                    })
+                }               
+            }
+  
+        }
+    }
+    else {
+        itemModel.updateOne({_id:req.params.id},item)
+        .then(()=>{
+            res.redirect("/list");
         })
-    })
-    .catch(err=>console.log(`Error happened when updating data from the database: ${err}`));
+    }
+ 
 })
 
 //router to delete user
@@ -264,7 +387,7 @@ router.delete("/delete/:id",isAuthenticated,(req,res)=>{
 router.get("/cart",isAuthenticated,(req,res)=>{
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     res.render("User/cart",{
-        title : "Cart",
+        titlePage : "Cart",
         items: cart.items,
         qty: cart.totalQty,
         total: cart.totalPrice
@@ -299,7 +422,7 @@ router.get("/cart/delete/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
     req.session.cart = cart;
     //console.log(req.session.cart);
     res.render("User/cart",{
-        title : "Cart",
+        titlePage : "Cart",
         items: cart.items,
         qty: cart.totalQty,
         total: cart.totalPrice

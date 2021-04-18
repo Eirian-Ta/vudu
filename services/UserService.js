@@ -21,7 +21,7 @@ function validatePsw(psw) {
 
 exports.getRegistrationView = (req,res,next)=> {
     res.render("User/register",{
-        title: "Sign Up Page"
+        titlePage: "Sign Up Page"
     });
 }
 
@@ -91,7 +91,7 @@ exports.processRegistrationForm = (req,res,next)=> {
             {
                 errors.errEmail = "This email is aready used."
                 res.render("User/register", {
-                    title: "Sign Up Page",
+                    titlePage: "Sign Up Page",
                     fn: req.body.fname,
                     ln: req.body.lname,
                     em: req.body.email,
@@ -109,7 +109,7 @@ exports.processRegistrationForm = (req,res,next)=> {
     else {
         console.log(errors);
         res.render("User/register", {
-            title: "Sign Up Page",
+            titlePage: "Sign Up Page",
             fn: req.body.fname,
             ln: req.body.lname,
             em: req.body.email,
@@ -126,7 +126,7 @@ exports.processRegistrationForm = (req,res,next)=> {
 exports.getLoginView = (req,res,next)=>{
     console.log("rendering Login Form");
     res.render("User/login",{
-        title: "Log In Page"
+        titlePage: "Log In Page"
     });
 }
 
@@ -147,7 +147,7 @@ exports.processLoginForm = (req,res,next)=> {
             {
                 errors.errPsw = "Email or password is incorrect";
                 res.render("User/login",{
-                    title: "Log In Page",
+                    titlePage: "Log In Page",
                     email: req.body.email,
                     psw: req.body.psw,
                     errorE: errors.errEm,
@@ -171,7 +171,7 @@ exports.processLoginForm = (req,res,next)=> {
                     {
                         errors.errPsw = "password is incorrect";
                         res.render("User/login",{
-                            title: "Log In Page",
+                            titlePage: "Log In Page",
                             usn: req.body.uname,
                             psw: req.body.psw,
                             errorE: errors.errEm,
@@ -188,7 +188,7 @@ exports.processLoginForm = (req,res,next)=> {
     else {
         //console.log(errors);
         res.render("User/login",{
-            title: "Log In Page",
+            titlePage: "Log In Page",
             usn: req.body.uname,
             psw: req.body.psw,
             errorE: errors.errEm,
@@ -200,14 +200,14 @@ exports.processLoginForm = (req,res,next)=> {
 
 exports.getUserDashboardView = (req,res,next)=>{    
     res.render("User/userDashboard",{
-        title: "User Dashboard",
+        titlePage: "User Dashboard",
         name: req.session.userName
     });
 }
 
 exports.getAdminDashboardView = (req,res,next)=> {
     res.render("User/adminDashboard",{
-        title: "Admin Dashboard",
+        titlePage: "Admin Dashboard",
         name: req.session.userName
     });
 }
