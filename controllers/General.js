@@ -20,7 +20,7 @@ router.get("/",
 
 //Search
 router.get("/search",(req,res)=>{
-    res.render("General/search",{
+    res.render("General/search.handlebars",{
         titlePage : "Search Page",
     });
 })
@@ -391,7 +391,6 @@ router.get("/cart/delete/:id",isAuthenticated,itemProcess.getAnItem,(req,res)=>{
 
 
 router.get("/checkout",isAuthenticated,(req,res,next)=> {
-    const image = base64Img.base64Sync(`/images/posters/${item.s_image}`)
     const emailContent = `
     <table border="1">
         <thead>
