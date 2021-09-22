@@ -36,6 +36,7 @@ router.post("/search",(req,res)=>{
                 id: item._id
             }
         });
+        //Modify for the case-insensitive issue
         res.render("General/search",{
             items: filteredItem
         });
