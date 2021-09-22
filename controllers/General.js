@@ -36,7 +36,7 @@ router.post("/search",(req,res)=>{
                 id: item._id
             }
         });
-        res.render("general/search",{
+        res.render("General/search",{
             items: filteredItem
         });
     })
